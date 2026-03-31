@@ -24,17 +24,18 @@ export function NetworkPlexus() {
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
+    // SMOOTHING: Increased lerp factor for touch responsiveness
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
-      mouse.x * 0.5,
-      0.05,
+      mouse.x * 0.8,
+      0.07,
     );
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
       groupRef.current.rotation.x,
-      -mouse.y * 0.5,
-      0.05,
+      -mouse.y * 0.8,
+      0.07,
     );
-    groupRef.current.position.y = Math.sin(t * 0.2) * 0.2;
+    groupRef.current.position.y = Math.sin(t * 0.2) * 0.1;
   });
 
   return (
@@ -73,11 +74,14 @@ export function NetworkPlexus() {
 export function CentralServer() {
   const meshRef = useRef<THREE.Mesh>(null!);
   const [position, setPosition] = useState<[number, number, number]>([0, 0, 0]);
+  const [scale, setScale] = useState(1);
 
   useLayoutEffect(() => {
     const handleResize = () => {
-      // 1024px is the 'lg' breakpoint in Tailwind
-      setPosition(window.innerWidth < 1024 ? [0, 0, 0] : [4, 0, 0]);
+      // Increase base scale for mobile
+      const isMobile = window.innerWidth < 1024;
+      setPosition(isMobile ? [0, 0, 0] : [4, 0, 0]);
+      setScale(isMobile ? 1.4 : 1); // 1.4x bigger on mobile
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -85,14 +89,13 @@ export function CentralServer() {
   }, []);
 
   useFrame((state) => {
-    meshRef.current.rotation.y += 0.01;
-    meshRef.current.scale.setScalar(
-      1 + Math.sin(state.clock.getElapsedTime() * 2) * 0.05,
-    );
+    meshRef.current.rotation.y += 0.005;
+    const pulse = 1 + Math.sin(state.clock.getElapsedTime() * 2) * 0.05;
+    meshRef.current.scale.setScalar(scale * pulse);
   });
 
   return (
-    <Float speed={3} rotationIntensity={2} floatIntensity={1}>
+    <Float speed={2} rotationIntensity={1} floatIntensity={1}>
       <mesh ref={meshRef} position={position}>
         <icosahedronGeometry args={[1.5, 1]} />
         <meshStandardMaterial
@@ -104,7 +107,7 @@ export function CentralServer() {
         <Sphere args={[0.7, 32, 32]}>
           <MeshDistortMaterial
             color="#7ac142"
-            speed={5}
+            speed={4}
             distort={0.3}
             radius={1}
           />
