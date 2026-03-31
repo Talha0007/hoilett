@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useLayoutEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Float, Sphere, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -10,7 +10,6 @@ export function NetworkPlexus() {
   const groupRef = useRef<THREE.Group>(null!);
   const count = 40;
 
-  // FIX: Stable positions to solve the "Impure function" error
   const nodes = useMemo(() => {
     return Array.from(
       { length: count },
@@ -46,33 +45,25 @@ export function NetworkPlexus() {
             <sphereGeometry args={[0.08, 16, 16]} />
             <meshBasicMaterial color="#3a86ff" />
           </mesh>
-
-          <mesh>
-            <sphereGeometry args={[0.2, 16, 16]} />
-            <meshBasicMaterial color="#7ac142" transparent opacity={0.1} />
-          </mesh>
-
-          {/* FIX: Simplified line logic to ensure interconnections show up */}
-          {nodes.slice(i + 1, i + 4).map((target, j) => {
-            const points = [
-              new THREE.Vector3(0, 0, 0),
-              new THREE.Vector3().subVectors(target, pos),
-            ];
-            return (
-              <line key={j}>
-                <bufferGeometry
-                  attach="geometry"
-                  onUpdate={(self) => self.setFromPoints(points)}
-                />
-                <lineBasicMaterial
-                  attach="material"
-                  color="#3a86ff"
-                  transparent
-                  opacity={0.2}
-                />
-              </line>
-            );
-          })}
+          {nodes.slice(i + 1, i + 4).map((target, j) => (
+            <line key={j}>
+              <bufferGeometry
+                attach="geometry"
+                onUpdate={(self) =>
+                  self.setFromPoints([
+                    new THREE.Vector3(0, 0, 0),
+                    new THREE.Vector3().subVectors(target, pos),
+                  ])
+                }
+              />
+              <lineBasicMaterial
+                attach="material"
+                color="#3a86ff"
+                transparent
+                opacity={0.2}
+              />
+            </line>
+          ))}
         </group>
       ))}
     </group>
@@ -81,6 +72,17 @@ export function NetworkPlexus() {
 
 export function CentralServer() {
   const meshRef = useRef<THREE.Mesh>(null!);
+  const [position, setPosition] = useState<[number, number, number]>([0, 0, 0]);
+
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      // 1024px is the 'lg' breakpoint in Tailwind
+      setPosition(window.innerWidth < 1024 ? [0, 0, 0] : [4, 0, 0]);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useFrame((state) => {
     meshRef.current.rotation.y += 0.01;
@@ -91,7 +93,7 @@ export function CentralServer() {
 
   return (
     <Float speed={3} rotationIntensity={2} floatIntensity={1}>
-      <mesh ref={meshRef} position={[4, 0, 0]}>
+      <mesh ref={meshRef} position={position}>
         <icosahedronGeometry args={[1.5, 1]} />
         <meshStandardMaterial
           color="#3a86ff"

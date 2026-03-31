@@ -52,7 +52,7 @@ export default function AboutPage() {
               <span className="text-[#3a86ff] italic">EXPERIENCE.</span>
             </h1>
 
-            <div className="space-y-6 text-blue-100/60 text-lg leading-relaxed max-w-xl text-justify">
+            <div className="space-y-6 text-blue-100/60 text-lg leading-relaxed max-w-xl">
               <p>
                 We have been in business since{" "}
                 <strong className="text-white">1997</strong>providing service to
@@ -136,13 +136,13 @@ export default function AboutPage() {
               TRAINED <br />
               <span className="text-[#7ac142] italic">SPECIALISTS.</span>
             </h2>
-            <p className="text-blue-100/60 text-lg leading-relaxed text-justify">
+            <p className="text-blue-100/60 text-lg leading-relaxed ">
               We are a team of committed mobile computer repair technicians
               dedicated to providing quality affordable service to the New York
               Tri-State area. All techs at Hoilett Business Systems are
               professionally trained.
             </p>
-            <p className="text-blue-100/60 text-lg leading-relaxed text-justify">
+            <p className="text-blue-100/60 text-lg leading-relaxed ">
               One issue that is often not recognized by our clients are viruses.
               There are some viruses that cause your computer to do weird things
               that anyone can diagnose as a virus. However, viruses and other
@@ -155,7 +155,7 @@ export default function AboutPage() {
               chance of recreating itself as some do.
             </p>
 
-            <p className="text-blue-100/60 text-lg leading-relaxed text-justify">
+            <p className="text-blue-100/60 text-lg leading-relaxed ">
               Hardware replacement is a pretty common occurrence in the computer
               repair industry. Over time computer parts wear out just like
               anything else that has moving parts and electrical circuitry. Hard
@@ -191,7 +191,7 @@ export default function AboutPage() {
                 REPAIRING ALL <br />
                 <span className="text-[#3a86ff]">POPULAR BRANDS.</span>
               </h2>
-              <p className="text-blue-100/40 text-sm leading-relaxed text-justify">
+              <p className="text-blue-100/40 text-sm leading-relaxed ">
                 We often see businesses and residential customers that don’t
                 understand the importance of keeping their computer up to date.
                 Microsoft recently stopped supporting Windows XP and it caused
@@ -205,7 +205,7 @@ export default function AboutPage() {
                 upgrade.
               </p>
 
-              <p className="text-blue-100/40 text-sm leading-relaxed text-justify">
+              <p className="text-blue-100/40 text-sm leading-relaxed ">
                 Hoilett Business Systems is not just a computer repair company
                 but we also supply the parts and software for your computers and
                 networks. Network issues can bring a business operation to a

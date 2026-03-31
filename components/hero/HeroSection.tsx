@@ -1,16 +1,22 @@
 "use client";
 
+import { useLayoutEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { ShieldCheck, Zap, Activity, CheckCircle2, Phone } from "lucide-react";
+import { Activity, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 
-// FIX: Added .then for the dynamic import error
 const Scene = dynamic(() => import("./Scene").then((mod) => mod.default), {
   ssr: false,
-  loading: () => <div className="absolute inset-0 bg-[#000814]" />,
+  loading: () => <div className="h-[40dvh] w-full bg-[#000205]" />,
 });
 
 export default function HeroSection() {
+  const [isClient, setIsClient] = useState(false);
+
+  useLayoutEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const services = [
     "Laptop/desktop/server Repair",
     "Virus and spyware Removal",
@@ -20,62 +26,78 @@ export default function HeroSection() {
     "Cyber security",
   ];
 
+  if (!isClient) return <div className="min-h-[100dvh] bg-[#000205]" />;
+
   return (
-    <section className="relative h-screen w-full flex items-center pt-20 overflow-hidden">
-      <Scene />
-
-      <div className="container mx-auto px-6 lg:px-16 z-10 grid lg:grid-cols-2 items-center">
-        <div className="space-y-8">
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-500/5 border border-blue-500/20 shadow-[0_0_15px_rgba(58,134,255,0.1)]">
-            <Activity size={16} className="text-[#3a86ff] animate-pulse" />
-            <span className="text-white/60 font-mono text-[10px] tracking-widest uppercase">
-              24/7 Technical Support
-            </span>
-          </div>
-
-          {/* Text from your Image */}
-          <h2 className="text-6xl lg:text-8xl font-black text-white leading-[0.85] tracking-tighter">
-            Computer <br />
-            <span className="text-[#3a86ff] italic">Support!</span>
-          </h2>
-
-          <div className="space-y-2">
-            <p className="text-white text-2xl font-bold">
-              Effective & Affordable Tech Support
-            </p>
-            <p className="text-blue-100/40 text-lg max-w-md font-medium leading-relaxed">
-              Our support technicians are available 24/7 to assist with your
-              computer and network support needs.
-            </p>
-          </div>
-
-          {/* Service Grid from Image */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-x-4">
-            {services.map((service, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2 border border-white/10 bg-white/5 p-2 rounded-md"
-              >
-                <CheckCircle2 size={14} className="text-[#3a86ff]" />
-                <span className="text-white/80 text-[12px] font-bold">
-                  {service}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex gap-4">
-            <Link href="/contact" className="block w-full sm:w-auto">
-              <button className="bg-white text-[#000814] px-10 py-5 rounded-2xl font-black text-sm tracking-widest hover:bg-[#3a86ff] hover:text-white transition-all shadow-2xl active:scale-95 w-full sm:w-auto">
-                ESTABLISH CONNECTION
-              </button>
-            </Link>
-          </div>
-        </div>
+    <section className="relative min-h-[100dvh] w-full flex flex-col bg-[#000205] overflow-x-hidden">
+      {/* 3D GLOBE AREA */}
+      {/* Mobile: 45% height, centered | Desktop: Full absolute background */}
+      <div className="relative h-[45dvh] w-full lg:absolute lg:inset-0 lg:h-full lg:z-0">
+        <Scene />
       </div>
 
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#3a86ff]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-[#7ac142]/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* CONTENT AREA */}
+      <div className="relative z-10 container mx-auto px-6 sm:px-10 lg:px-16 pb-20 lg:pb-0 lg:min-h-screen lg:flex lg:items-center">
+        <div className="max-w-[90rem] mx-auto w-full grid lg:grid-cols-2 items-center">
+          <div className="flex flex-col space-y-6 lg:space-y-8 text-center lg:text-left items-center lg:items-start pt-10 lg:pt-0">
+            {/* Tagline */}
+            <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 backdrop-blur-md">
+              <Activity
+                size={14}
+                className="text-[#3a86ff] animate-pulse shrink-0"
+              />
+              <span className="text-white/70 font-mono text-[10px] tracking-[0.2em] uppercase">
+                24/7 Technical Support
+              </span>
+            </div>
+
+            {/* Heading */}
+            <h1 className="text-[13vw] leading-[0.9] sm:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tighter">
+              Computer <br />
+              <span className="text-[#3a86ff] italic drop-shadow-[0_0_30px_rgba(58,134,255,0.3)]">
+                Support!
+              </span>
+            </h1>
+
+            {/* Description */}
+            <div className="space-y-3 max-w-lg">
+              <p className="text-white text-lg sm:text-xl lg:text-2xl font-bold">
+                Effective & Affordable Tech Support
+              </p>
+              <p className="text-white/40 text-sm sm:text-base lg:text-lg font-medium leading-relaxed">
+                Our technicians are available 24/7 to assist with your computer
+                and network support needs.
+              </p>
+            </div>
+
+            {/* Services */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-xl text-left">
+              {services.map((service, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-3 border border-white/5 bg-white/[0.03] p-3 rounded-xl backdrop-blur-sm"
+                >
+                  <CheckCircle2 size={16} className="text-[#3a86ff] shrink-0" />
+                  <span className="text-white/80 text-[11px] font-bold uppercase tracking-tight">
+                    {service}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="pt-4 w-full sm:w-auto">
+              <Link href="/contact">
+                <button className="bg-white text-[#000814] px-10 py-5 rounded-2xl font-black text-sm tracking-widest hover:bg-[#3a86ff] hover:text-white transition-all w-full sm:min-w-[280px] active:scale-95">
+                  ESTABLISH CONNECTION
+                </button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="hidden lg:block h-[500px]" />
+        </div>
+      </div>
     </section>
   );
 }
