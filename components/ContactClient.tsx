@@ -38,7 +38,7 @@ export default function ContactClient() {
       {/* Header Section */}
       <div className="text-center mb-20 space-y-4">
         <h1 className="text-6xl lg:text-8xl font-black tracking-tighter uppercase italic text-[#001f3f]">
-          Get In <span className="text-[#3a86ff] not-italic">Touch.</span>
+          Get In <span className="text-[#3a86ff] not-italic">Touch</span>
         </h1>
         <p className="text-[#001f3f]/40 font-bold uppercase tracking-[0.3em] text-[10px]">
           Professional IT Support Across the Tri-State Area

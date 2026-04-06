@@ -132,6 +132,7 @@ export default function Navbar() {
 
             <NavLink href="/remote-support" label="Remote Support" />
             <NavLink href="/payment" label="Payment" />
+            <NavLink href="/contact" label="Contact" />
           </div>
 
           {/* RIGHT ACTION AREA */}

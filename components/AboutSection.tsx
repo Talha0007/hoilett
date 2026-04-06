@@ -55,9 +55,7 @@ export default function AboutSection() {
               </div>
               <h2 className="text-4xl lg:text-6xl font-black tracking-tighter leading-[1.1] text-[#001f3f]">
                 PROUDLY SERVING THE <br />
-                <span className="text-[#3a86ff] italic">
-                  NY TRI-STATE AREA.
-                </span>
+                <span className="text-[#3a86ff] italic">NY TRI-STATE AREA</span>
               </h2>
             </div>
 

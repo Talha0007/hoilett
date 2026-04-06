@@ -41,7 +41,7 @@ export default function RemoteSupportPage() {
 
           <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-[#001f3f] tracking-tighter uppercase leading-[0.9] mb-6 md:mb-8">
             On-Demand <br />
-            <span className="text-[#3a86ff] italic font-black">Support.</span>
+            <span className="text-[#3a86ff] italic font-black">Support</span>
           </h1>
 
           <p className="text-base md:text-xl text-gray-500 font-medium leading-relaxed max-w-2xl border-l-4 border-[#3a86ff] pl-5 md:pl-8">

@@ -111,7 +111,7 @@ export function CentralServer() {
           color="#001f3f"
           wireframe
           transparent
-          opacity={0.03}
+          opacity={0.09}
         />
         <Sphere args={[1.3, 32, 32]}>
           <MeshDistortMaterial

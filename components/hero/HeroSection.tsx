@@ -60,10 +60,10 @@ export default function HeroSection() {
             <div className="space-y-2">
               <h1 className="text-[12vw] leading-[0.85] sm:text-6xl lg:text-7xl xl:text-8xl font-black text-black tracking-tighter">
                 Network <br />{" "}
-                <span className="text-[#3a86ff] italic">Solutions.</span>
+                <span className="text-[#3a86ff] italic">Solutions</span>
               </h1>
               <p className="text-[#001f3f] text-lg lg:text-xl font-extrabold tracking-tight uppercase">
-                Architecting Resilient Ecosystems.
+                Architecting Resilient Ecosystems
               </p>
             </div>
 
@@ -74,7 +74,7 @@ export default function HeroSection() {
                 your business remains connected and secure.
               </p>
               <p className="hidden md:block text-black/50 text-[11px] leading-relaxed italic border-l-2 border-[#3a86ff]/20 pl-4">
-                Scalable technology for a data-driven world. Providing the
+                Scalable technology for a data-driven world, Providing the
                 silent backbone for your daily operations.
               </p>
             </div>

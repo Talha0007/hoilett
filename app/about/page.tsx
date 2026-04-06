@@ -71,7 +71,7 @@ export default function AboutPage() {
             <h1 className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] text-[#001f3f]">
               WE HAVE VAST <br />
               <span className="text-[#3a86ff] italic uppercase">
-                EXPERIENCE.
+                EXPERIENCE
               </span>
             </h1>
 

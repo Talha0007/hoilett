@@ -72,7 +72,7 @@ export default function ServerInfoSection() {
           </div>
           <h2 className="text-4xl lg:text-7xl font-black tracking-tighter uppercase italic leading-[0.9]">
             Enterprise <br />
-            <span className="text-blue-400 not-italic">Infrastructure.</span>
+            <span className="text-blue-400 not-italic">Infrastructure</span>
           </h2>
           <p className="mt-8 text-white/40 font-mono text-xs tracking-[0.4em] uppercase max-w-xl">
             Reliable. Secure. High-Performance Architecture.
