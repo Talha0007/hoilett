@@ -7,7 +7,6 @@ export default function LoadingScreen() {
   const { active, progress } = useProgress();
   const [show, setShow] = useState(true);
 
-  // Smoothly hide the loader after progress hits 100%
   useEffect(() => {
     if (!active && progress === 100) {
       const timer = setTimeout(() => setShow(false), 800);
@@ -20,25 +19,18 @@ export default function LoadingScreen() {
   return (
     <div className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-white transition-opacity duration-1000">
       <div className="relative flex flex-col items-center">
-        {/* ANIMATED RING - NAVY & PRIMARY BLUE */}
         <div className="w-24 h-24 border-2 border-[#001f3f]/5 border-t-[#3a86ff] rounded-full animate-spin" />
-
-        {/* PERCENTAGE TEXT - JET BLACK */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-[#000000] font-mono text-sm font-black">
+          <span className="text-black font-mono text-sm font-black">
             {Math.round(progress)}%
           </span>
         </div>
-
-        {/* STATUS TEXT - NAVY BLUE */}
         <h2 className="mt-8 text-[#001f3f] font-mono text-[10px] font-bold tracking-[0.4em] uppercase animate-pulse">
           Establishing Connection...
         </h2>
-
-        {/* PROGRESS BAR - CLEAN MINIMALIST */}
         <div className="mt-4 w-48 h-[2px] bg-[#001f3f]/5 rounded-full overflow-hidden">
           <div
-            className="h-full bg-[#3a86ff] transition-all duration-300 ease-out shadow-[0_0_8px_rgba(58,134,255,0.5)]"
+            className="h-full bg-[#3a86ff] transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>

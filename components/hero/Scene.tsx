@@ -3,7 +3,7 @@
 import { useLayoutEffect, useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ContactShadows, Environment } from "@react-three/drei";
-import { NetworkPlexus, CentralServer } from "./Models";
+import { CentralServer, DistributedNodes } from "./Models";
 
 export default function Scene() {
   const [cameraConfig, setCameraConfig] = useState({
@@ -14,7 +14,7 @@ export default function Scene() {
   useLayoutEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setCameraConfig({ position: [0, 0, 10], fov: 45 });
+        setCameraConfig({ position: [0, 0, 18], fov: 50 }); // Wider view for mobile
       } else {
         setCameraConfig({ position: [0, 0, 15], fov: 35 });
       }
@@ -34,16 +34,16 @@ export default function Scene() {
         gl={{ antialias: true, alpha: true }}
       >
         <Suspense fallback={null}>
-          <ambientLight intensity={1.8} /> {/* Increased for Light Mode */}
-          <pointLight position={[10, 15, 10]} color="#3a86ff" intensity={2} />
-          <NetworkPlexus />
+          <ambientLight intensity={1.5} />
+          <pointLight position={[10, 10, 10]} color="#3a86ff" intensity={2} />
           <CentralServer />
+          <DistributedNodes />
           <ContactShadows
             position={[0, -5, 0]}
-            scale={25}
-            blur={3.5}
-            far={5}
-            opacity={0.08} // Very soft shadow for white background
+            scale={20}
+            blur={3}
+            far={4.5}
+            opacity={0.1}
           />
           <Environment preset="city" />
         </Suspense>

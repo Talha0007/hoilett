@@ -1,86 +1,29 @@
 "use client";
 
 import { useRef, useMemo, useState, useLayoutEffect } from "react";
-import { useFrame, useThree } from "@react-three/fiber";
-import { Float, Sphere, MeshDistortMaterial } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import {
+  Float,
+  Sphere,
+  MeshDistortMaterial,
+  RoundedBox,
+} from "@react-three/drei";
 import * as THREE from "three";
-
-export function NetworkPlexus() {
-  const { mouse } = useThree();
-  const groupRef = useRef<THREE.Group>(null!);
-  const count = 60; // Increased for a denser "Network" feel
-
-  const nodes = useMemo(() => {
-    return Array.from(
-      { length: count },
-      () =>
-        new THREE.Vector3(
-          (Math.random() - 0.5) * 25,
-          (Math.random() - 0.5) * 25,
-          (Math.random() - 0.5) * 25,
-        ),
-    );
-  }, []);
-
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(
-      groupRef.current.rotation.y,
-      mouse.x * 0.5,
-      0.05,
-    );
-    groupRef.current.rotation.x = THREE.MathUtils.lerp(
-      groupRef.current.rotation.x,
-      -mouse.y * 0.5,
-      0.05,
-    );
-    groupRef.current.position.y = Math.sin(t * 0.2) * 0.15;
-  });
-
-  return (
-    <group ref={groupRef}>
-      {nodes.map((pos, i) => (
-        <group key={i} position={pos}>
-          <mesh>
-            <sphereGeometry args={[0.07, 16, 16]} />
-            <meshBasicMaterial color="#3a86ff" />
-          </mesh>
-          {/* Connecting lines only to nearby nodes to simulate a grid */}
-          {nodes.slice(i + 1, i + 4).map((target, j) => (
-            <line key={j}>
-              <bufferGeometry
-                attach="geometry"
-                onUpdate={(self) =>
-                  self.setFromPoints([
-                    new THREE.Vector3(0, 0, 0),
-                    new THREE.Vector3().subVectors(target, pos),
-                  ])
-                }
-              />
-              <lineBasicMaterial
-                attach="material"
-                color="#3a86ff"
-                transparent
-                opacity={0.35}
-              />
-            </line>
-          ))}
-        </group>
-      ))}
-    </group>
-  );
-}
 
 export function CentralServer() {
   const meshRef = useRef<THREE.Mesh>(null!);
-  const [position, setPosition] = useState<[number, number, number]>([0, 0, 0]);
-  const [scale, setScale] = useState(1);
+  const [position, setPosition] = useState<[number, number, number]>([5, 0, 0]);
+  const [scale, setScale] = useState(1.1);
 
   useLayoutEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth < 1024;
-      setPosition(isMobile ? [0, 0, 0] : [5, 0, 0]);
-      setScale(isMobile ? 1.4 : 1.1);
+      if (window.innerWidth < 1024) {
+        setPosition([0, 0.5, 0]); // Center and move slightly up for mobile
+        setScale(0.7); // Smaller scale to avoid text overlap
+      } else {
+        setPosition([5, 0, 0]); // Standard right-side desktop position
+        setScale(1.1);
+      }
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -88,30 +31,76 @@ export function CentralServer() {
   }, []);
 
   useFrame((state) => {
-    meshRef.current.rotation.y += 0.004;
+    meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.15;
   });
 
   return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={0.8}>
-      <mesh ref={meshRef} position={position}>
-        <icosahedronGeometry args={[2.2, 2]} />
-        <meshStandardMaterial
-          color="#001f3f"
-          wireframe
-          transparent
-          opacity={0.1} // Very subtle wireframe
-        />
-        <Sphere args={[1.3, 32, 32]}>
+    <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.6}>
+      <mesh ref={meshRef} position={position} scale={scale}>
+        <RoundedBox args={[3.5, 3.5, 3.5]} radius={0.4} smoothness={4}>
+          <meshStandardMaterial
+            color="#001f3f"
+            transparent
+            opacity={0.1}
+            metalness={1}
+            roughness={0}
+          />
+        </RoundedBox>
+        <mesh>
+          <boxGeometry args={[3.7, 3.7, 3.7]} />
+          <meshStandardMaterial
+            color="#3a86ff"
+            wireframe
+            transparent
+            opacity={0.08}
+          />
+        </mesh>
+        <Sphere args={[1.5, 64, 64]}>
           <MeshDistortMaterial
             color="#3a86ff"
-            speed={2.5}
-            distort={0.35}
+            speed={2}
+            distort={0.3}
             radius={1}
             emissive="#3a86ff"
-            emissiveIntensity={0.2}
+            emissiveIntensity={0.4}
           />
         </Sphere>
       </mesh>
     </Float>
+  );
+}
+
+export function DistributedNodes() {
+  const groupRef = useRef<THREE.Group>(null!);
+  const satellites = useMemo(
+    () => [
+      { pos: [8, 5, -2] as [number, number, number], scale: 0.8 },
+      { pos: [-8, -5, -2] as [number, number, number], scale: 0.6 },
+      { pos: [-7, 6, 2] as [number, number, number], scale: 0.7 },
+      { pos: [9, -4, 3] as [number, number, number], scale: 0.5 },
+    ],
+    [],
+  );
+
+  useFrame(() => {
+    groupRef.current.rotation.y += 0.002;
+  });
+
+  return (
+    <group ref={groupRef}>
+      {satellites.map((sat, i) => (
+        <Float key={i} position={sat.pos} speed={2} rotationIntensity={0.5}>
+          <RoundedBox args={[1.2, 1.2, 1.2]} radius={0.2} scale={sat.scale}>
+            <meshStandardMaterial
+              color="#3a86ff"
+              emissive="#3a86ff"
+              emissiveIntensity={0.2}
+              transparent
+              opacity={0.8}
+            />
+          </RoundedBox>
+        </Float>
+      ))}
+    </group>
   );
 }

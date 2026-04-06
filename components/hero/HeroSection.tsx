@@ -2,7 +2,14 @@
 
 import { useLayoutEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { Activity, CheckCircle2, ArrowRight } from "lucide-react";
+import {
+  Activity,
+  CheckCircle2,
+  ArrowRight,
+  ShieldCheck,
+  Globe2,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
 import LoadingScreen from "./LoadingScreen";
 
@@ -12,7 +19,6 @@ const Scene = dynamic(() => import("./Scene").then((mod) => mod.default), {
 
 export default function HeroSection() {
   const [isClient, setIsClient] = useState(false);
-
   useLayoutEffect(() => {
     setIsClient(true);
   }, []);
@@ -29,68 +35,70 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative min-h-[100dvh] w-full flex flex-col bg-white overflow-x-hidden font-sans">
+    <section className="relative min-h-[100dvh] w-full flex flex-col bg-white overflow-hidden font-sans">
       <LoadingScreen />
 
-      {/* CORPORATE LIGHT GRADIENT */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_70%_30%,_#f0f7ff_0%,_#ffffff_60%)]" />
+      {/* Background Layer */}
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_70%_30%,_#f8fbff_0%,_#ffffff_70%)]" />
 
-      {/* 3D Scene - Subtle transparency for light mode */}
-      <div className="relative h-[45dvh] w-full lg:absolute lg:inset-0 lg:h-full lg:z-10 opacity-90">
+      {/* 3D Scene Layer - Absolute so it doesn't push text */}
+      <div className="absolute inset-0 z-10 pointer-events-none lg:pointer-events-auto opacity-40 lg:opacity-100">
         <Scene />
       </div>
 
-      <div className="relative z-20 container mx-auto px-6 sm:px-10 lg:px-16 pb-20 lg:pb-0 lg:min-h-screen lg:flex lg:items-center">
-        <div className="max-w-[90rem] mx-auto w-full grid lg:grid-cols-2 items-center gap-12">
-          <div className="flex flex-col space-y-6 lg:space-y-8 text-center lg:text-left items-center lg:items-start pt-12 lg:pt-0">
-            {/* Industry Badge */}
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#3a86ff]/5 border border-[#3a86ff]/10 backdrop-blur-sm">
-              <Activity
-                size={14}
-                className="text-[#3a86ff] animate-pulse shrink-0"
-              />
-              <span className="text-[#001f3f] font-mono text-[10px] font-bold tracking-[0.2em] uppercase">
-                Next-Gen Networking
+      {/* Content Area */}
+      <div className="relative z-20 container mx-auto px-6 lg:px-16 flex-1 flex flex-col justify-center">
+        <div className="max-w-[90rem] mx-auto w-full grid lg:grid-cols-2 items-center gap-6 lg:gap-12">
+          <div className="flex flex-col space-y-4 lg:space-y-6 text-center lg:text-left items-center lg:items-start pt-16 lg:pt-0">
+            <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-[#3a86ff]/5 border border-[#3a86ff]/10">
+              <Activity size={12} className="text-[#3a86ff] animate-pulse" />
+              <span className="text-[#001f3f] font-mono text-[9px] font-bold tracking-widest uppercase">
+                Established 1997 • Next-Gen Networking
               </span>
             </div>
 
-            {/* Sharp Typography - High Contrast */}
-            <h1 className="text-[12vw] leading-[0.9] sm:text-7xl lg:text-8xl xl:text-9xl font-black text-[#000000] tracking-tighter">
-              Network <br />
-              <span className="text-[#3a86ff] italic">Solutions.</span>
-            </h1>
-
-            <div className="space-y-4 max-w-lg">
-              <p className="text-[#001f3f] text-xl sm:text-2xl font-bold">
-                Scalable Infrastructure for Modern Business
-              </p>
-              <p className="text-[#000000]/60 text-sm sm:text-base lg:text-lg leading-relaxed font-medium">
-                We design and deploy high-performance network architectures that
-                keep your business connected, secure, and ready for growth.
+            <div className="space-y-2">
+              <h1 className="text-[12vw] leading-[0.85] sm:text-6xl lg:text-7xl xl:text-8xl font-black text-black tracking-tighter">
+                Network <br />{" "}
+                <span className="text-[#3a86ff] italic">Solutions.</span>
+              </h1>
+              <p className="text-[#001f3f] text-lg lg:text-xl font-extrabold tracking-tight uppercase">
+                Architecting Resilient Ecosystems.
               </p>
             </div>
 
-            {/* Modern Card-style Service Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-xl text-left">
+            <div className="max-w-lg space-y-3">
+              <p className="text-black/70 text-xs sm:text-sm lg:text-base leading-relaxed font-medium">
+                We engineer high-capacity infrastructure for modern enterprises.
+                From local maintenance to global cloud architecture, we ensure
+                your business remains connected and secure.
+              </p>
+              <p className="hidden md:block text-black/50 text-[11px] leading-relaxed italic border-l-2 border-[#3a86ff]/20 pl-4">
+                Scalable technology for a data-driven world. Providing the
+                silent backbone for your daily operations.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 w-full max-w-lg text-left">
               {services.map((service, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 border border-slate-100 bg-white/80 p-4 rounded-2xl shadow-sm hover:shadow-md transition-all backdrop-blur-md"
+                  className="flex items-center gap-2 border border-slate-100 bg-white/60 p-2 lg:p-3 rounded-xl shadow-sm backdrop-blur-sm"
                 >
-                  <CheckCircle2 size={18} className="text-[#3a86ff] shrink-0" />
-                  <span className="text-[#001f3f] text-[11px] font-extrabold uppercase tracking-tight">
+                  <CheckCircle2 size={14} className="text-[#3a86ff] shrink-0" />
+                  <span className="text-[#001f3f] text-[9px] font-bold uppercase tracking-tighter">
                     {service}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="pt-6 w-full sm:w-auto">
+            <div className="pt-2 w-full sm:w-auto">
               <Link href="/contact">
-                <button className="group bg-[#001f3f] text-white px-10 py-6 rounded-2xl font-black text-sm tracking-widest hover:bg-[#3a86ff] transition-all w-full sm:min-w-[320px] flex items-center justify-center gap-4 shadow-xl shadow-blue-900/10">
+                <button className="group bg-[#001f3f] text-white px-8 py-4 rounded-xl font-black text-[11px] tracking-widest hover:bg-[#3a86ff] transition-all w-full flex items-center justify-center gap-3">
                   ESTABLISH CONNECTION
                   <ArrowRight
-                    size={18}
+                    size={16}
                     className="group-hover:translate-x-1 transition-transform"
                   />
                 </button>
@@ -98,10 +106,28 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Spacer for 3D Scene on Desktop */}
-          <div className="hidden lg:block h-[600px]" />
+          {/* Desktop Spacer */}
+          <div className="hidden lg:block h-[400px] w-full pointer-events-none" />
+        </div>
+
+        {/* Bottom Trust Bar - Managed to stay visible but subtle */}
+        <div className="flex flex-wrap lg:grid lg:grid-cols-3 gap-4 lg:gap-8 mt-8 py-6 border-t border-gray-100 w-full max-w-4xl opacity-80">
+          <Stat icon={<ShieldCheck size={16} />} text="Ironclad Security" />
+          <Stat icon={<Globe2 size={16} />} text="Global Support" />
+          <Stat icon={<Zap size={16} />} text="99.9% Uptime" />
         </div>
       </div>
     </section>
+  );
+}
+
+function Stat({ icon, text }: { icon: React.ReactNode; text: string }) {
+  return (
+    <div className="flex gap-2 items-center">
+      <span className="text-[#3a86ff]">{icon}</span>
+      <span className="text-[9px] lg:text-[10px] font-black text-[#001f3f] uppercase tracking-wider">
+        {text}
+      </span>
+    </div>
   );
 }
