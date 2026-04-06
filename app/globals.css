@@ -9,6 +9,10 @@
   --foreground: #ffffff;
 }
 
+html {
+  scroll-behavior: smooth; /* Keep this for anchor links */
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
@@ -28,4 +32,26 @@ body {
 canvas {
   image-rendering: optimizeQuality;
   touch-action: none;
+}
+
+@layer utilities {
+  @keyframes hudFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes hudBreathing {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-6px);
+    }
+  }
 }

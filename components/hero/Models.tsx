@@ -8,34 +8,33 @@ import * as THREE from "three";
 export function NetworkPlexus() {
   const { mouse } = useThree();
   const groupRef = useRef<THREE.Group>(null!);
-  const count = 40;
+  const count = 60; // Increased for a denser "Network" feel
 
   const nodes = useMemo(() => {
     return Array.from(
       { length: count },
       () =>
         new THREE.Vector3(
-          (Math.random() - 0.5) * 20,
-          (Math.random() - 0.5) * 20,
-          (Math.random() - 0.5) * 20,
+          (Math.random() - 0.5) * 25,
+          (Math.random() - 0.5) * 25,
+          (Math.random() - 0.5) * 25,
         ),
     );
   }, []);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    // SMOOTHING: Increased lerp factor for touch responsiveness
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
-      mouse.x * 0.8,
-      0.07,
+      mouse.x * 0.5,
+      0.05,
     );
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
       groupRef.current.rotation.x,
-      -mouse.y * 0.8,
-      0.07,
+      -mouse.y * 0.5,
+      0.05,
     );
-    groupRef.current.position.y = Math.sin(t * 0.2) * 0.1;
+    groupRef.current.position.y = Math.sin(t * 0.2) * 0.15;
   });
 
   return (
@@ -43,9 +42,10 @@ export function NetworkPlexus() {
       {nodes.map((pos, i) => (
         <group key={i} position={pos}>
           <mesh>
-            <sphereGeometry args={[0.08, 16, 16]} />
+            <sphereGeometry args={[0.07, 16, 16]} />
             <meshBasicMaterial color="#3a86ff" />
           </mesh>
+          {/* Connecting lines only to nearby nodes to simulate a grid */}
           {nodes.slice(i + 1, i + 4).map((target, j) => (
             <line key={j}>
               <bufferGeometry
@@ -61,7 +61,7 @@ export function NetworkPlexus() {
                 attach="material"
                 color="#3a86ff"
                 transparent
-                opacity={0.2}
+                opacity={0.35}
               />
             </line>
           ))}
@@ -78,10 +78,9 @@ export function CentralServer() {
 
   useLayoutEffect(() => {
     const handleResize = () => {
-      // Increase base scale for mobile
       const isMobile = window.innerWidth < 1024;
-      setPosition(isMobile ? [0, 0, 0] : [4, 0, 0]);
-      setScale(isMobile ? 1.4 : 1); // 1.4x bigger on mobile
+      setPosition(isMobile ? [0, 0, 0] : [5, 0, 0]);
+      setScale(isMobile ? 1.4 : 1.1);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -89,27 +88,27 @@ export function CentralServer() {
   }, []);
 
   useFrame((state) => {
-    meshRef.current.rotation.y += 0.005;
-    const pulse = 1 + Math.sin(state.clock.getElapsedTime() * 2) * 0.05;
-    meshRef.current.scale.setScalar(scale * pulse);
+    meshRef.current.rotation.y += 0.004;
   });
 
   return (
-    <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+    <Float speed={2} rotationIntensity={0.5} floatIntensity={0.8}>
       <mesh ref={meshRef} position={position}>
-        <icosahedronGeometry args={[1.5, 1]} />
+        <icosahedronGeometry args={[2.2, 2]} />
         <meshStandardMaterial
-          color="#3a86ff"
+          color="#001f3f"
           wireframe
-          emissive="#3a86ff"
-          emissiveIntensity={0.5}
+          transparent
+          opacity={0.1} // Very subtle wireframe
         />
-        <Sphere args={[0.7, 32, 32]}>
+        <Sphere args={[1.3, 32, 32]}>
           <MeshDistortMaterial
-            color="#7ac142"
-            speed={4}
-            distort={0.3}
+            color="#3a86ff"
+            speed={2.5}
+            distort={0.35}
             radius={1}
+            emissive="#3a86ff"
+            emissiveIntensity={0.2}
           />
         </Sphere>
       </mesh>

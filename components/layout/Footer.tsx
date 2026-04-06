@@ -1,18 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  PiIcon as Pinterest,
-  ChevronRight,
-} from "lucide-react";
+import { MapPin, Phone, Mail, ChevronRight, ArrowRight } from "lucide-react";
 
 import {
   FaFacebookF,
   FaTwitter,
   FaLinkedinIn,
-  FaPinterestP,
+  FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
 
@@ -29,97 +25,95 @@ export default function Footer() {
   ];
 
   const services = [
-    "Laptop/desktop/server Repair",
-    "Virus and spyware Removal",
-    "Data recovery and backup",
-    "Network design",
-    "Cloud services",
-    "Cyber security",
+    "Enterprise Network Design",
+    "Threat Mitigation & Virus Removal",
+    "Data Recovery & Backup",
+    "Infrastructure Architecture",
+    "Managed Cloud Services",
+    "Cyber Security Solutions",
   ];
 
   return (
-    <footer className="bg-[#000814] text-white pt-20 pb-8 border-t border-white/5 relative overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#3a86ff]/5 rounded-full blur-[120px] pointer-events-none" />
+    <footer className="bg-white text-[#001f3f] pt-24 pb-12 border-t border-blue-50 relative overflow-hidden">
+      {/* Decorative Light Background Elements */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-[100px] pointer-events-none -mr-40 -mt-40" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-50/30 rounded-full blur-[80px] pointer-events-none -ml-20 -mb-20" />
 
       <div className="container mx-auto px-6 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Column 1: Brand & NJ Office */}
-          <div className="space-y-6">
-            <Link href="/" className="inline-block">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+          {/* Brand Column */}
+          <div className="space-y-8">
+            <Link
+              href="/"
+              className="inline-block transition-transform hover:scale-105"
+            >
               <Image
                 src="/hbs-logo.png"
                 alt="Hoilett Business Systems"
-                width={120}
-                height={60}
+                width={150}
+                height={50}
                 priority
-                style={{ width: "auto", height: "auto" }}
                 className="object-contain"
               />
             </Link>
-            <div className="space-y-4">
-              <h3 className="text-[#3a86ff] font-bold tracking-widest text-xs uppercase">
-                New Jersey Office
-              </h3>
-              <ul className="space-y-3 text-white/60 text-sm">
-                <li className="flex items-start gap-3">
-                  <MapPin size={18} className="text-[#7ac142] shrink-0" />
-                  <span>
-                    1030 South Orange Avenue
-                    <br />
-                    Newark, NJ 07106
-                  </span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Phone size={18} className="text-[#7ac142] shrink-0" />
-                  <a
-                    href="tel:9737144625"
-                    className="hover:text-white transition-colors"
-                  >
-                    (973) 714-4625
-                  </a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Mail size={18} className="text-[#7ac142] shrink-0" />
-                  <a
-                    href="mailto:support@hoilett.com"
-                    className="hover:text-white transition-colors"
-                  >
-                    support@hoilett.com
-                  </a>
-                </li>
-              </ul>
+            <p className="text-[#000000]/50 text-sm leading-relaxed font-medium">
+              Providing enterprise-grade IT infrastructure and network security
+              solutions since 1996. Dedicated to keeping your business connected
+              and secure.
+            </p>
+            <div className="flex items-center gap-4">
+              {[
+                FaFacebookF,
+                FaTwitter,
+                FaLinkedinIn,
+                FaInstagram,
+                FaYoutube,
+              ].map((Icon, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-blue-50 text-[#3a86ff] hover:bg-[#3a86ff] hover:text-white transition-all duration-300 shadow-sm"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Column 2: NY Office */}
-          <div className="lg:pt-20 space-y-4">
-            <h3 className="text-[#3a86ff] font-bold tracking-widest text-xs uppercase">
-              New York Office
+          {/* New Jersey Column */}
+          <div className="space-y-6">
+            <h3 className="text-[#3a86ff] font-black tracking-[0.2em] text-[10px] uppercase">
+              New Jersey Office
             </h3>
-            <ul className="space-y-3 text-white/60 text-sm">
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-[#7ac142] shrink-0" />
+            <ul className="space-y-5 text-[#001f3f]/70 text-sm font-semibold">
+              <li className="flex items-start gap-4 group">
+                <div className="p-2.5 bg-blue-50 rounded-lg text-[#3a86ff] group-hover:bg-[#3a86ff] group-hover:text-white transition-colors">
+                  <MapPin size={16} />
+                </div>
                 <span>
-                  381 Park Avenue South
+                  1030 South Orange Avenue
                   <br />
-                  New York, NY 10016
+                  Newark, NJ 07106
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone size={18} className="text-[#7ac142] shrink-0" />
+              <li className="flex items-center gap-4 group">
+                <div className="p-2.5 bg-blue-50 rounded-lg text-[#3a86ff] group-hover:bg-[#3a86ff] group-hover:text-white transition-colors">
+                  <Phone size={16} />
+                </div>
                 <a
-                  href="tel:2127966850"
-                  className="hover:text-white transition-colors"
+                  href="tel:9737144625"
+                  className="hover:text-[#3a86ff] transition-colors"
                 >
-                  (212) 796-6850
+                  (973) 714-4625
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail size={18} className="text-[#7ac142] shrink-0" />
+              <li className="flex items-center gap-4 group">
+                <div className="p-2.5 bg-blue-50 rounded-lg text-[#3a86ff] group-hover:bg-[#3a86ff] group-hover:text-white transition-colors">
+                  <Mail size={16} />
+                </div>
                 <a
-                  href="mailto:support@hoilett.com"
-                  className="hover:text-white transition-colors"
+                  href={`mailto:support@hoilett.com`}
+                  className="hover:text-[#3a86ff] transition-colors"
                 >
                   support@hoilett.com
                 </a>
@@ -127,12 +121,53 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Quick Links */}
-          <div className="lg:pt-20 space-y-6">
-            <h3 className="text-white font-bold tracking-widest text-xs uppercase border-l-2 border-[#3a86ff] pl-3">
-              Quick Links
+          {/* New York Column */}
+          <div className="space-y-6">
+            <h3 className="text-[#3a86ff] font-black tracking-[0.2em] text-[10px] uppercase">
+              New York Office
             </h3>
-            <ul className="grid grid-cols-1 gap-3 text-white/60 text-sm">
+            <ul className="space-y-5 text-[#001f3f]/70 text-sm font-semibold">
+              <li className="flex items-start gap-4 group">
+                <div className="p-2.5 bg-blue-50 rounded-lg text-[#3a86ff] group-hover:bg-[#3a86ff] group-hover:text-white transition-colors">
+                  <MapPin size={16} />
+                </div>
+                <span>
+                  381 Park Avenue South
+                  <br />
+                  New York, NY 10016
+                </span>
+              </li>
+              <li className="flex items-center gap-4 group">
+                <div className="p-2.5 bg-blue-50 rounded-lg text-[#3a86ff] group-hover:bg-[#3a86ff] group-hover:text-white transition-colors">
+                  <Phone size={16} />
+                </div>
+                <a
+                  href="tel:2127966850"
+                  className="hover:text-[#3a86ff] transition-colors"
+                >
+                  (212) 796-6850
+                </a>
+              </li>
+              <li className="flex items-center gap-4 group">
+                <div className="p-2.5 bg-blue-50 rounded-lg text-[#3a86ff] group-hover:bg-[#3a86ff] group-hover:text-white transition-colors">
+                  <Mail size={16} />
+                </div>
+                <a
+                  href={`mailto:support@hoilett.com`}
+                  className="hover:text-[#3a86ff] transition-colors"
+                >
+                  support@hoilett.com
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Quick Links Column */}
+          <div className="space-y-6">
+            <h3 className="text-[#001f3f] font-black tracking-[0.2em] text-[10px] uppercase border-l-4 border-[#3a86ff] pl-4">
+              Company
+            </h3>
+            <ul className="grid grid-cols-1 gap-4 text-[#001f3f]/60 text-sm font-bold">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -141,7 +176,7 @@ export default function Footer() {
                   >
                     <ChevronRight
                       size={14}
-                      className="group-hover:translate-x-1 transition-transform text-[#7ac142]"
+                      className="group-hover:translate-x-1 transition-transform text-[#3a86ff]"
                     />
                     {link.name}
                   </Link>
@@ -149,63 +184,27 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Column 4: Services */}
-          <div className="lg:pt-20 space-y-6">
-            <h3 className="text-white font-bold tracking-widest text-xs uppercase border-l-2 border-[#7ac142] pl-3">
-              Support & Help
-            </h3>
-            <ul className="space-y-3 text-white/60 text-sm font-medium">
-              {services.map((service) => (
-                <li
-                  key={service}
-                  className="hover:text-white transition-colors cursor-default flex items-center gap-2"
-                >
-                  <div className="w-1 h-1 bg-[#3a86ff] rounded-full" />
-                  {service}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex items-center gap-6">
-          <a
-            href="#"
-            className="text-white/40 hover:text-[#3a86ff] transition-colors"
-            aria-label="Facebook"
-          >
-            <FaFacebookF size={18} />
-          </a>
-          <a
-            href="#"
-            className="text-white/40 hover:text-[#3a86ff] transition-colors"
-            aria-label="Twitter"
-          >
-            <FaTwitter size={18} />
-          </a>
-          <a
-            href="#"
-            className="text-white/40 hover:text-[#3a86ff] transition-colors"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedinIn size={18} />
-          </a>
-          <a
-            href="#"
-            className="text-white/40 hover:text-[#3a86ff] transition-colors"
-            aria-label="Pinterest"
-          >
-            <FaPinterestP size={18} />
-          </a>
-          <a
-            href="#"
-            className="text-white/40 hover:text-[#3a86ff] transition-colors"
-            aria-label="YouTube"
-          >
-            <FaYoutube size={18} />
-          </a>
+        <div className="pt-10 border-t border-blue-50 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-[#001f3f]/40 text-[11px] font-bold tracking-wider uppercase">
+            © {currentYear} Hoilett Business Systems. All Rights Reserved.
+          </p>
+          <div className="flex items-center gap-8 text-[11px] font-black tracking-[0.1em] uppercase text-[#001f3f]/60">
+            <Link
+              href="/privacy"
+              className="hover:text-[#3a86ff] transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="hover:text-[#3a86ff] transition-colors"
+            >
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

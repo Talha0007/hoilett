@@ -1,5 +1,12 @@
 import Image from "next/image";
-import { CheckCircle2, History, ShieldCheck, Phone } from "lucide-react";
+import {
+  CheckCircle2,
+  History,
+  ShieldCheck,
+  Phone,
+  Zap,
+  Award,
+} from "lucide-react";
 
 export const metadata = {
   title: "About Our Experience | Hoilett Business Systems",
@@ -20,7 +27,6 @@ export default function AboutPage() {
     "Dell",
     "Gateway",
   ];
-
   const specialtyPoints = [
     "Manual Virus Removal",
     "Hardware Upgrades",
@@ -31,45 +37,63 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="bg-[#000814] text-white min-h-screen pt-32 pb-20 relative overflow-hidden">
-      {/* Ambient Background Glows */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#3a86ff]/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-[#7ac142]/5 rounded-full blur-[120px] pointer-events-none" />
+    <main className="bg-white text-[#001f3f] min-h-screen pt-24 md:pt-32 pb-20 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/graphy.png')]" />
+      <div className="absolute top-0 right-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-50 rounded-full blur-[80px] md:blur-[140px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 lg:px-16 space-y-32 relative z-10">
-        {/* --- SECTION 1: VAST EXPERIENCE --- */}
-        <section className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8 order-2 lg:order-1">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-[#3a86ff]/10 border border-[#3a86ff]/20">
-              <History size={16} className="text-[#3a86ff]" />
-              <span className="text-[#3a86ff] text-xs font-black uppercase tracking-[0.2em]">
+      <div className="container mx-auto px-6 lg:px-16 space-y-20 md:space-y-32 relative z-10">
+        {/* SECTION 1: VAST EXPERIENCE */}
+        <section className="flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+          {/* Mobile Image First for better flow */}
+          <div className="relative w-full order-1 lg:order-2 group">
+            <div className="absolute -inset-2 md:-inset-4 bg-blue-50 rounded-[2rem] md:rounded-[3rem] -rotate-2 group-hover:rotate-0 transition-transform duration-500" />
+            <div className="relative rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border-[6px] md:border-[12px] border-white shadow-xl">
+              <Image
+                src="/about/ab-contentimage.png"
+                alt="HBS Experience"
+                width={800}
+                height={600}
+                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                priority
+              />
+            </div>
+          </div>
+
+          <div className="space-y-6 md:space-y-10 order-2 lg:order-1">
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-blue-50 border border-blue-100">
+              <History size={14} className="text-[#3a86ff]" />
+              <span className="text-[#3a86ff] text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em]">
                 Established 1997
               </span>
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-black tracking-tighter leading-[0.9]">
+            <h1 className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] text-[#001f3f]">
               WE HAVE VAST <br />
-              <span className="text-[#3a86ff] italic">EXPERIENCE.</span>
+              <span className="text-[#3a86ff] italic uppercase">
+                EXPERIENCE.
+              </span>
             </h1>
 
-            <div className="space-y-6 text-blue-100/60 text-lg leading-relaxed max-w-xl">
+            <div className="space-y-4 md:space-y-6 text-[#001f3f]/60 text-base md:text-lg leading-relaxed font-medium">
               <p>
                 We have been in business since{" "}
-                <strong className="text-white">1997</strong>providing service to
-                the New York Tri-State area. Our goal at Hoilett Business
-                Systems is to provide you with the greatest service experience
-                ever.
+                <strong className="text-[#001f3f] font-black underline decoration-[#3a86ff] decoration-2 md:decoration-4 underline-offset-4">
+                  1997
+                </strong>{" "}
+                providing service to the New York Tri-State area.
               </p>
-              <p>
-                Our technicians have been in the computer repair industry for
-                many years. We have maintained an excellent customer service
-                record throughout the life of this company. Not only do we have
-                some of the best and most knowledgeable techs in New York
-                Tri-State area, but we also require continued education to
-                ensure that they all keep up with the constant changes in
-                technology.
+              <p className="sm:block">
+                Our goal at Hoilett Business Systems is to provide you with the
+                greatest service experience ever. Our technicians have been in
+                the computer repair industry for many years. We have maintained
+                an excellent customer service record throughout the life of this
+                company. Not only do we have some of the best and most
+                knowledgeable techs in New York Tri-State area, but we also
+                require continued education to ensure that they all keep up with
+                the constant changes in technology.
               </p>
-              <p>
+              <p className="sm:block">
                 We provide solutions for every computer repair related issue
                 that you could ever have. We do it all. Everything from simple
                 computer setup to complex network configurations. There is no
@@ -81,68 +105,49 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md">
-              <p className="text-white/80 italic font-medium leading-relaxed">
+            <div className="p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] bg-blue-50/50 border-l-[6px] md:border-l-8 border-[#3a86ff] relative overflow-hidden">
+              <Zap className="absolute -right-4 -bottom-4 text-[#3a86ff]/10 w-16 h-16 md:w-24 md:h-24" />
+              <p className="text-[#001f3f] italic font-bold text-lg md:text-xl relative z-10">
                 &quot;We require continued education to ensure our techs keep up
-                with the constant changes in technology.&quot;
+                with constant changes.&quot;
               </p>
-            </div>
-          </div>
-
-          {/* IMAGE 1: Hover Zoom & Brighten */}
-          <div className="relative order-1 lg:order-2 group">
-            <div className="absolute -inset-4 bg-[#3a86ff]/20 blur-3xl rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-700" />
-            <div className="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl transition-all duration-500 group-hover:border-[#3a86ff]/50 group-hover:scale-[1.02]">
-              <Image
-                src="/about/ab-contentimage.png"
-                alt="Hoilett Business Systems Experience"
-                width={800}
-                height={600}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:brightness-110"
-                priority
-              />
             </div>
           </div>
         </section>
 
-        {/* --- SECTION 2: TRAINED SPECIALISTS --- */}
-        <section className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* IMAGE 2: Tech Gradient Activation */}
-          <div className="relative group cursor-crosshair">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#7ac142] to-[#3a86ff] rounded-[2rem] blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-            <div className="relative rounded-[2rem] overflow-hidden border border-white/10 bg-[#000814] aspect-[4/3]">
+        {/* SECTION 2: TRAINED SPECIALISTS */}
+        <section className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+          <div className="relative w-full group">
+            <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-blue-100 bg-white aspect-[4/3] shadow-lg">
               <Image
                 src="/about/abt-home-2.jpg"
-                alt="Trained IT Specialists"
+                alt="Specialists"
                 fill
-                className="object-cover transition-all duration-1000 ease-in-out group-hover:scale-105 group-hover:rotate-1"
+                className="object-cover transition-transform duration-1000 group-hover:scale-105"
               />
-
-              {/* Floating 24/7 Support Badge with its own hover animation */}
-              <div className="absolute -bottom-8 -right-8 bg-[#7ac142] p-8 rounded-3xl shadow-[0_20px_50px_rgba(122,193,66,0.3)] flex flex-col items-center transition-transform duration-500 group-hover:-translate-x-4 group-hover:-translate-y-4">
-                <ShieldCheck size={32} className="text-white mb-1" />
-                <span className="text-white font-black text-xl leading-none">
-                  24/7
-                </span>
-                <span className="text-white/80 font-bold text-[10px] uppercase tracking-tighter">
-                  Support
-                </span>
+              <div className="absolute top-4 left-4 md:top-8 md:left-8 bg-[#3a86ff] p-3 md:p-6 rounded-xl md:rounded-2xl shadow-xl flex items-center gap-3 md:gap-4">
+                <ShieldCheck size={20} className="text-white md:w-6 md:h-6" />
+                <p className="text-white font-black text-sm md:text-lg leading-none uppercase">
+                  Elite Techs
+                </p>
               </div>
             </div>
           </div>
 
-          <div className="space-y-8">
-            <h2 className="text-5xl lg:text-6xl font-black tracking-tighter leading-[0.9]">
+          <div className="space-y-8 md:space-y-10">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-[#001f3f]">
               TRAINED <br />
-              <span className="text-[#7ac142] italic">SPECIALISTS.</span>
+              <span className="text-[#3a86ff] italic uppercase">
+                SPECIALISTS.
+              </span>
             </h2>
-            <p className="text-blue-100/60 text-lg leading-relaxed ">
+            <p className="text-[#001f3f]/60 text-base md:text-lg font-medium leading-relaxed">
               We are a team of committed mobile computer repair technicians
               dedicated to providing quality affordable service to the New York
               Tri-State area. All techs at Hoilett Business Systems are
               professionally trained.
             </p>
-            <p className="text-blue-100/60 text-lg leading-relaxed ">
+            <p className="text-[#001f3f]/60 text-base md:text-lg font-medium leading-relaxed">
               One issue that is often not recognized by our clients are viruses.
               There are some viruses that cause your computer to do weird things
               that anyone can diagnose as a virus. However, viruses and other
@@ -154,8 +159,7 @@ export default function AboutPage() {
               is more detailed but we ensure that your virus doesn’t stand a
               chance of recreating itself as some do.
             </p>
-
-            <p className="text-blue-100/60 text-lg leading-relaxed ">
+            <p className="text-[#001f3f]/60 text-base md:text-lg font-medium leading-relaxed">
               Hardware replacement is a pretty common occurrence in the computer
               repair industry. Over time computer parts wear out just like
               anything else that has moving parts and electrical circuitry. Hard
@@ -164,17 +168,16 @@ export default function AboutPage() {
               replacement. Either way our techs are prepared to handle the
               issue. We do software and hardware upgrades.
             </p>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
               {specialtyPoints.map((point) => (
                 <li
                   key={point}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-[#7ac142]/30 hover:bg-[#7ac142]/5 transition-all group"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-blue-50/50 border border-transparent hover:border-[#3a86ff]/30 transition-all"
                 >
-                  <CheckCircle2
-                    size={18}
-                    className="text-[#7ac142] group-hover:scale-125 transition-transform"
-                  />
-                  <span className="text-white/90 font-bold text-sm">
+                  <div className="p-1.5 rounded-lg bg-white text-[#3a86ff] shadow-sm">
+                    <CheckCircle2 size={16} />
+                  </div>
+                  <span className="text-[#001f3f] font-black text-[10px] md:text-xs uppercase tracking-tight">
                     {point}
                   </span>
                 </li>
@@ -183,15 +186,16 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* --- SECTION 3: BRANDS & PARTS --- */}
-        <section className="pt-20 border-t border-white/5">
-          <div className="grid lg:grid-cols-3 gap-12 items-start">
-            <div className="lg:col-span-1 space-y-6">
-              <h2 className="text-4xl font-black tracking-tighter leading-none">
-                REPAIRING ALL <br />
-                <span className="text-[#3a86ff]">POPULAR BRANDS.</span>
+        {/* SECTION 3: BRANDS */}
+        <section className="pt-16 md:pt-24 border-t border-blue-50">
+          <div className="flex flex-col lg:grid lg:grid-cols-3 gap-10 lg:gap-16">
+            <div className="space-y-6 md:space-y-8">
+              <div className="w-12 h-1 bg-[#3a86ff]" />
+              <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-[#001f3f] uppercase">
+                Repairing All <br />
+                <span className="text-[#3a86ff]">Popular Brands.</span>
               </h2>
-              <p className="text-blue-100/40 text-sm leading-relaxed ">
+              <p className="text-[#001f3f]/50 text-sm font-medium leading-relaxed">
                 We often see businesses and residential customers that don’t
                 understand the importance of keeping their computer up to date.
                 Microsoft recently stopped supporting Windows XP and it caused
@@ -204,8 +208,7 @@ export default function AboutPage() {
                 and components that you may now or in the future need to
                 upgrade.
               </p>
-
-              <p className="text-blue-100/40 text-sm leading-relaxed ">
+              <p className="text-[#001f3f]/50 text-sm font-medium leading-relaxed">
                 Hoilett Business Systems is not just a computer repair company
                 but we also supply the parts and software for your computers and
                 networks. Network issues can bring a business operation to a
@@ -214,25 +217,29 @@ export default function AboutPage() {
                 share files so our network team works fast and efficiently to
                 restore any network outages that might arise.
               </p>
+              <div className="flex items-center gap-3 opacity-60">
+                <Award className="text-[#3a86ff]" size={24} />
+                <p className="text-[9px] font-black text-[#001f3f] uppercase tracking-widest">
+                  Authorized Parts Supplier
+                </p>
+              </div>
             </div>
 
-            <div className="lg:col-span-2 relative group">
-              {/* Floating Logowall with a glassmorphism lift effect */}
-              <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 p-8 transition-all duration-500 group-hover:bg-white/[0.08] group-hover:border-[#3a86ff]/30 group-hover:shadow-[0_0_50px_rgba(58,134,255,0.1)]">
+            <div className="lg:col-span-2 space-y-6 md:space-y-8">
+              <div className="relative rounded-[1.5rem] md:rounded-[3rem] overflow-hidden border border-blue-50 bg-white p-6 md:p-12 shadow-sm">
                 <Image
                   src="/about/about-logos.png"
-                  alt="Popular Brands We Repair"
+                  alt="Brands"
                   width={800}
                   height={400}
-                  className="w-full h-auto object-contain transition-transform duration-1000 group-hover:scale-[1.03]"
+                  className="w-full h-auto object-contain"
                 />
               </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-6">
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 md:gap-3">
                 {brands.map((brand) => (
                   <div
                     key={brand}
-                    className="text-center py-2 rounded-lg bg-white/5 border border-white/5 text-[10px] font-bold text-white/30 uppercase tracking-widest hover:text-white hover:border-[#3a86ff]/50 hover:bg-[#3a86ff]/10 transition-all cursor-default"
+                    className="text-center py-2 md:py-3 rounded-lg md:rounded-xl border border-blue-50 text-[8px] md:text-[9px] font-black text-[#001f3f]/30 uppercase tracking-widest hover:bg-blue-50 transition-all"
                   >
                     {brand}
                   </div>
@@ -242,25 +249,23 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* --- CTA SECTION --- */}
-        <div className="bg-gradient-to-r from-[#3a86ff] to-[#3a86ff]/60 rounded-[2.5rem] p-12 lg:p-20 text-center space-y-8 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl transition-transform duration-1000 group-hover:scale-150" />
-          <h2 className="text-4xl lg:text-5xl font-black tracking-tighter relative z-10">
-            Ready for Professional Support?
+        {/* CTA SECTION */}
+        <div className="bg-[#001f3f] rounded-[2rem] md:rounded-[3.5rem] p-8 md:p-24 text-center space-y-8 md:space-y-10 relative overflow-hidden shadow-2xl">
+          <div className="absolute top-0 right-0 w-48 md:w-96 h-48 md:h-96 bg-[#3a86ff]/10 rounded-full -mr-24 -mt-24 blur-2xl md:blur-3xl" />
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter text-white italic uppercase relative z-10">
+            Ready for{" "}
+            <span className="not-italic text-[#3a86ff]">Professional</span>{" "}
+            Support?
           </h2>
-          <div className="flex flex-wrap justify-center gap-8 items-center relative z-10">
-            <button className="bg-white text-[#000814] px-12 py-5 rounded-2xl font-black text-sm tracking-widest hover:bg-[#7ac142] hover:text-white transition-all duration-300 shadow-2xl active:scale-95">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 md:gap-10 items-center relative z-10">
+            <button className="w-full sm:w-auto bg-[#3a86ff] text-white px-10 md:px-14 py-4 md:py-6 rounded-xl md:rounded-2xl font-black text-xs md:text-sm tracking-widest hover:bg-white hover:text-[#001f3f] transition-all">
               GET STARTED NOW
             </button>
             <a
               href="tel:9737144625"
-              className="flex items-center gap-4 text-white font-black text-2xl group/phone"
+              className="flex items-center gap-4 text-white font-black text-xl md:text-3xl hover:text-[#3a86ff] transition-colors"
             >
-              <Phone
-                className="text-white group-hover/phone:animate-bounce"
-                fill="white"
-                size={24}
-              />
+              <Phone className="w-6 h-6 md:w-8 md:h-8" fill="currentColor" />
               (973) 714-4625
             </a>
           </div>

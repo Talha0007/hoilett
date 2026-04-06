@@ -2,19 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import {
-  PhoneCall,
-  Mail,
   ChevronDown,
-  Menu,
   X,
   Shield,
-  Cpu,
   Cloud,
   Database,
   Network,
+  ArrowRight,
+  Globe,
+  Zap,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link"; // Use Next.js Link for better performance
+import Link from "next/link";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,174 +22,190 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
+    // Prevent body scroll when mobile menu is open
+    if (mobileMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [mobileMenu]);
 
   const serviceOptions = [
     {
-      name: "LAPTOP/DESKTOP/SERVER REPAIR",
+      name: "Infrastructure Repair",
       icon: <Network size={16} />,
       href: "/services/repair",
     },
     {
-      name: "VIRUS AND SPYWARE REMOVAL",
-      icon: <Cloud size={16} />,
+      name: "Threat Mitigation",
+      icon: <Shield size={16} />,
       href: "/services/virus-removal",
     },
     {
-      name: "DATA RECOVERY AND BACKUP",
-      icon: <Shield size={16} />,
+      name: "Enterprise Backup",
+      icon: <Database size={16} />,
       href: "/services/data",
     },
     {
-      name: "NETWORK DESIGN",
-      icon: <Database size={16} />,
+      name: "Network Architecture",
+      icon: <Globe size={16} />,
       href: "/services/network",
     },
     {
-      name: "CLOUD SERVICES",
-      icon: <Cpu size={16} />,
+      name: "Cloud Integration",
+      icon: <Cloud size={16} />,
       href: "/services/cloud",
     },
     {
-      name: "CYBER SECURITY",
-      icon: <Cpu size={16} />,
+      name: "Cyber Security",
+      icon: <Zap size={16} />,
       href: "/services/security",
     },
   ];
 
-  const navLinks = [
-    { label: "HOME", href: "/" },
-    { label: "ABOUT", href: "/about" },
-    { label: "SERVICES", href: "/services" },
-    { label: "REMOTE SERVICE", href: "/remote" },
-    { label: "PAYMENT", href: "/payment" },
-    { label: "CONTACT", href: "/contact" },
+  const mobileLinks = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Remote Support", href: "/remote-support" },
+    { label: "Payment", href: "/payment" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-[999] transition-all duration-500 ease-out px-4 lg:px-10 ${
-        isScrolled ? "py-2" : "py-4"
-      }`}
-    >
-      <div
-        className={`container mx-auto flex items-center justify-between px-6 py-3 rounded-2xl transition-all duration-500 border ${
+    <>
+      <nav
+        className={`fixed top-0 left-0 w-full z-[999] transition-all duration-500 ${
           isScrolled
-            ? "bg-[#000814]/90 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-blue-500/30"
-            : "bg-white/5 backdrop-blur-sm border-white/10"
+            ? "py-3 bg-white shadow-xl border-b border-blue-50"
+            : "py-5 md:py-8 bg-transparent"
         }`}
       >
-        {/* --- LEFT: LOGO --- */}
-        <Link href="/" className="relative h-[40px] w-[100px]">
-          <Image
-            src="/hbs-logo.png"
-            alt="Logo"
-            fill
-            priority
-            className="object-contain"
-          />
-        </Link>
-
-        {/* --- CENTER: DESKTOP NAVIGATION --- */}
-        <div
-          className={`hidden xl:flex items-center gap-1 p-1 rounded-full border transition-colors duration-500 ${
-            isScrolled
-              ? "bg-white/5 border-white/10"
-              : "bg-gray-200/10 border-white/10"
-          }`}
-        >
-          <NavLink href="/" label="HOME" />
-          <NavLink href="/about" label="ABOUT" />
-
-          {/* SERVICES DROPDOWN */}
-          <div className="relative group">
-            <button className="flex items-center gap-1 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest transition-all duration-300 group-hover:bg-[#3a86ff] group-hover:text-white text-white uppercase">
-              SERVICES{" "}
-              <ChevronDown
-                size={14}
-                className="group-hover:rotate-180 transition-transform duration-300"
+        <div className="container mx-auto px-4 md:px-12 flex items-center justify-between">
+          {/* LOGO - Scales for mobile */}
+          <Link href="/" className="relative flex items-center shrink-0">
+            <div className="w-[100px] md:w-[130px]">
+              <Image
+                src="/hbs-logo.png"
+                alt="HBS Logo"
+                width={130}
+                height={45}
+                priority
+                className="object-contain"
               />
-            </button>
+            </div>
+          </Link>
 
-            <div className="absolute top-full left-0 mt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-[1001]">
-              <div className="bg-[#001f3f] border border-blue-400/20 rounded-2xl p-3 shadow-2xl">
-                {serviceOptions.map((service) => (
-                  <Link
-                    key={service.name}
-                    href={service.href}
-                    className="flex items-center gap-3 px-4 py-3 text-white/80 hover:text-white hover:bg-[#3a86ff] rounded-xl transition-all text-[11px] font-bold tracking-wide"
-                  >
-                    <span className="text-[#3a86ff] group-hover:text-white transition-colors">
-                      {service.icon}
-                    </span>
-                    {service.name}
-                  </Link>
-                ))}
+          {/* DESKTOP MENU - Hidden until XL */}
+          <div className="hidden xl:flex items-center gap-1">
+            <NavLink href="/" label="Home" />
+            <NavLink href="/about" label="About" />
+
+            {/* SOLUTIONS DROPDOWN */}
+            <div className="relative group/menu">
+              <button className="flex items-center gap-2 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-[#001f3f] hover:text-[#3a86ff] transition-all">
+                Solutions
+                <ChevronDown
+                  size={12}
+                  className="group-hover/menu:rotate-180 transition-transform duration-300"
+                />
+              </button>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[500px] pt-4 opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible transition-all duration-300">
+                <div className="bg-white border border-blue-50 rounded-3xl p-6 shadow-2xl grid grid-cols-2 gap-2">
+                  {serviceOptions.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-xl transition-all group/item"
+                    >
+                      <span className="p-2 bg-gray-50 rounded-lg text-[#3a86ff] group-hover/item:bg-[#3a86ff] group-hover/item:text-white transition-colors">
+                        {item.icon}
+                      </span>
+                      <span className="text-[10px] font-bold text-[#001f3f] uppercase">
+                        {item.name}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
+
+            <NavLink href="/remote-support" label="Remote Support" />
+            <NavLink href="/payment" label="Payment" />
           </div>
 
-          <NavLink href="/remote" label="REMOTE SERVICE" />
-          <NavLink href="/payment" label="PAYMENT" />
-          <NavLink href="/contact" label="CONTACT" />
-        </div>
+          {/* RIGHT ACTION AREA */}
+          <div className="flex items-center gap-4 md:gap-8">
+            {/* Phone - Hidden on small mobile */}
+            <div className="hidden sm:flex flex-col items-end">
+              <span className="text-[8px] font-bold tracking-widest uppercase text-[#3a86ff]">
+                NOC Support
+              </span>
+              <a
+                href="tel:9737144625"
+                className="text-sm md:text-base font-black text-[#001f3f] whitespace-nowrap"
+              >
+                (973) 714-4625
+              </a>
+            </div>
 
-        {/* --- RIGHT: CONTACT DETAILS --- */}
-        <div className="hidden lg:flex items-center gap-4">
-          <div className="flex flex-col items-end gap-1">
-            <a
-              href="mailto:support@hoilett.com"
-              className="flex items-center gap-2 text-[13px] font-bold transition-all duration-300 hover:text-[#3a86ff] text-white/90"
+            {/* HAMBURGER TOGGLE - Visible below XL */}
+            <button
+              className="xl:hidden flex flex-col items-center justify-center gap-1.5 w-10 h-10 bg-blue-50 rounded-lg text-[#001f3f]"
+              onClick={() => setMobileMenu(true)}
             >
-              <Mail size={16} className="text-[#3a86ff]" />
-              <span>support@hoilett.com</span>
-            </a>
-            <a
-              href="tel:9737144625"
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[15px] font-black transition-all duration-300 group ${
-                isScrolled
-                  ? "bg-[#3a86ff] text-white"
-                  : "bg-white/10 text-white hover:bg-[#3a86ff]"
-              }`}
-            >
-              <PhoneCall size={18} className="group-hover:animate-pulse" />
-              <span>(973) 714-4625</span>
-            </a>
+              <div className="w-5 h-0.5 bg-current rounded-full" />
+              <div className="w-5 h-0.5 bg-current rounded-full" />
+              <div className="w-5 h-0.5 bg-current rounded-full" />
+            </button>
           </div>
         </div>
+      </nav>
 
-        {/* MOBILE TOGGLE */}
-        <button
-          className="xl:hidden text-[#3a86ff] z-[1001]"
-          onClick={() => setMobileMenu(!mobileMenu)}
-        >
-          {mobileMenu ? <X size={32} /> : <Menu size={32} />}
-        </button>
+      {/* MOBILE MENU OVERLAY - Fixed Background Issues */}
+      <div
+        className={`fixed inset-0 bg-white z-[1000] transition-transform duration-500 ease-in-out ${
+          mobileMenu ? "translate-x-0" : "translate-x-full"
+        } xl:hidden`}
+      >
+        <div className="flex flex-col h-full p-6 md:p-12">
+          <div className="flex justify-between items-center mb-10">
+            <Image src="/hbs-logo.png" alt="Logo" width={100} height={35} />
+            <button
+              onClick={() => setMobileMenu(false)}
+              className="w-12 h-12 flex items-center justify-center bg-gray-50 rounded-2xl text-[#001f3f]"
+            >
+              <X size={28} />
+            </button>
+          </div>
+
+          <nav className="flex flex-col space-y-2">
+            {mobileLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="text-3xl md:text-4xl font-black text-[#001f3f] py-4 flex items-center justify-between border-b border-gray-50 hover:text-[#3a86ff] transition-all"
+                onClick={() => setMobileMenu(false)}
+              >
+                {link.label}
+                <ArrowRight size={24} className="text-[#3a86ff]" />
+              </Link>
+            ))}
+          </nav>
+
+          <div className="mt-auto pt-8">
+            <div className="bg-blue-50 p-6 rounded-3xl">
+              <span className="text-[10px] font-bold text-[#3a86ff] uppercase tracking-widest">
+                Immediate Response Line
+              </span>
+              <p className="text-2xl font-black text-[#001f3f] mt-1">
+                (973) 714-4625
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-
-      {/* --- MOBILE MENU --- */}
-      {mobileMenu && (
-        <div className="fixed inset-x-4 top-24 xl:hidden bg-[#000814]/98 backdrop-blur-3xl border border-blue-500/30 rounded-3xl p-8 flex flex-col gap-6 animate-in slide-in-from-top-5 duration-300 shadow-[0_40px_100px_rgba(0,0,0,0.8)] z-[1000]">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              onClick={() => setMobileMenu(false)} // Important: close menu on click
-              className="text-white font-bold text-lg border-b border-white/10 pb-4 hover:text-[#3a86ff] transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <a
-            href="tel:9737144625"
-            className="bg-[#3a86ff] text-white py-5 rounded-2xl text-center font-black text-lg shadow-xl shadow-blue-500/20 active:scale-95 transition-transform"
-          >
-            Call (973) 714-4625
-          </a>
-        </div>
-      )}
-    </nav>
+    </>
   );
 }
 
@@ -198,9 +213,10 @@ function NavLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="px-5 py-2 rounded-full text-[11px] font-bold tracking-widest transition-all duration-300 hover:bg-[#3a86ff] hover:text-white text-white uppercase"
+      className="px-4 py-2 text-[10px] font-black uppercase tracking-widest text-[#001f3f] hover:text-[#3a86ff] transition-all relative group"
     >
-      {label}
+      <span className="relative z-10">{label}</span>
+      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#3a86ff] transition-all duration-300 group-hover:w-1/2" />
     </Link>
   );
 }

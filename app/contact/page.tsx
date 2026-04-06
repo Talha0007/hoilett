@@ -8,7 +8,10 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="bg-[#000814] text-white min-h-screen pt-32 pb-20 relative">
+    /* Changed to Light Mode background for clarity */
+    <main className="bg-white text-[#001f3f] min-h-screen pt-32 pb-20 relative">
+      {/* Decorative subtle background elements */}
+      <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-blue-50 to-transparent pointer-events-none" />
       <ContactClient />
     </main>
   );
