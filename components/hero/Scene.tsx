@@ -2,8 +2,8 @@
 
 import { useLayoutEffect, useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { ContactShadows, Environment } from "@react-three/drei";
-import { CentralServer, DistributedNodes } from "./Models";
+import { ContactShadows, Environment, Preload } from "@react-three/drei";
+import { NetworkPlexus, CentralServer } from "./Models";
 
 export default function Scene() {
   const [cameraConfig, setCameraConfig] = useState({
@@ -14,7 +14,7 @@ export default function Scene() {
   useLayoutEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setCameraConfig({ position: [0, 0, 18], fov: 50 }); // Wider view for mobile
+        setCameraConfig({ position: [0, 0, 12], fov: 45 });
       } else {
         setCameraConfig({ position: [0, 0, 15], fov: 35 });
       }
@@ -31,21 +31,29 @@ export default function Scene() {
           position: cameraConfig.position as any,
           fov: cameraConfig.fov,
         }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{
+          antialias: true,
+          alpha: true,
+          powerPreference: "high-performance",
+        }}
+        dpr={[1, 2]} // Performance optimization for high-res screens
       >
         <Suspense fallback={null}>
           <ambientLight intensity={1.5} />
-          <pointLight position={[10, 10, 10]} color="#3a86ff" intensity={2} />
+          <pointLight position={[10, 15, 10]} color="#3a86ff" intensity={1.5} />
+
+          <NetworkPlexus />
           <CentralServer />
-          <DistributedNodes />
+
           <ContactShadows
             position={[0, -5, 0]}
-            scale={20}
-            blur={3}
-            far={4.5}
-            opacity={0.1}
+            scale={25}
+            blur={4}
+            far={5}
+            opacity={0.05}
           />
           <Environment preset="city" />
+          <Preload all />
         </Suspense>
       </Canvas>
     </div>
