@@ -57,7 +57,7 @@ export default function HeroSection() {
               </span>
             </div> */}
 
-            <div className="space-y-2 pt-8">
+            <div className="space-y-2">
               <h1 className="text-[12vw] leading-[0.85] sm:text-6xl lg:text-7xl xl:text-8xl font-black text-black tracking-tighter">
                 Network <br />{" "}
                 <span className="text-[#3a86ff] italic">Solutions</span>
