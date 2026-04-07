@@ -48,7 +48,7 @@ export default function Footer() {
               className="inline-block transition-transform hover:scale-105"
             >
               <Image
-                src="/hbs-logo.png"
+                src="/hoilett-logo.png"
                 alt="Hoilett Business Systems"
                 width={150}
                 height={50}
@@ -132,9 +132,9 @@ export default function Footer() {
                   <MapPin size={16} />
                 </div>
                 <span>
-                  381 Park Avenue South
+                  13 W 38th St,
                   <br />
-                  New York, NY 10016
+                  New York, NY 10018
                 </span>
               </li>
               <li className="flex items-center gap-4 group">

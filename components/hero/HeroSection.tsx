@@ -50,12 +50,12 @@ export default function HeroSection() {
       <div className="relative z-20 container mx-auto px-6 lg:px-16 flex-1 flex flex-col justify-center">
         <div className="max-w-[90rem] mx-auto w-full grid lg:grid-cols-2 items-center gap-6 lg:gap-12">
           <div className="flex flex-col space-y-4 lg:space-y-6 text-center lg:text-left items-center lg:items-start pt-16 lg:pt-0">
-            <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-[#3a86ff]/5 border border-[#3a86ff]/10">
+            {/* <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-[#3a86ff]/5 border border-[#3a86ff]/10">
               <Activity size={12} className="text-[#3a86ff] animate-pulse" />
               <span className="text-[#001f3f] font-mono text-[9px] font-bold tracking-widest uppercase">
                 Established 1997 • Next-Gen Networking
               </span>
-            </div>
+            </div> */}
 
             <div className="space-y-2">
               <h1 className="text-[12vw] leading-[0.85] sm:text-6xl lg:text-7xl xl:text-8xl font-black text-black tracking-tighter">
@@ -73,7 +73,7 @@ export default function HeroSection() {
                 From local maintenance to global cloud architecture, we ensure
                 your business remains connected and secure.
               </p>
-              <p className="hidden md:block text-black/50 text-[11px] leading-relaxed italic border-l-2 border-[#3a86ff]/20 pl-4">
+              <p className="hidden md:block text-black/50 text-[12px] leading-relaxed italic border-l-2 border-[#3a86ff]/20 pl-4">
                 Scalable technology for a data-driven world, Providing the
                 silent backbone for your daily operations.
               </p>
@@ -86,7 +86,7 @@ export default function HeroSection() {
                   className="flex items-center gap-2 border border-slate-100 bg-white/60 p-2 lg:p-3 rounded-xl shadow-sm backdrop-blur-sm"
                 >
                   <CheckCircle2 size={14} className="text-[#3a86ff] shrink-0" />
-                  <span className="text-[#001f3f] text-[9px] font-bold uppercase tracking-tighter">
+                  <span className="text-[#001f3f] text-[11px] font-bold uppercase tracking-tighter">
                     {service}
                   </span>
                 </div>
@@ -96,7 +96,7 @@ export default function HeroSection() {
             <div className="pt-2 w-full sm:w-auto">
               <Link href="/contact">
                 <button className="group bg-[#001f3f] text-white px-8 py-4 rounded-xl font-black text-[11px] tracking-widest hover:bg-[#3a86ff] transition-all w-full flex items-center justify-center gap-3">
-                  ESTABLISH CONNECTION
+                  Contact Us
                   <ArrowRight
                     size={16}
                     className="group-hover:translate-x-1 transition-transform"

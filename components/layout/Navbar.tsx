@@ -22,7 +22,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
-    // Prevent body scroll when mobile menu is open
+
     if (mobileMenu) {
       document.body.style.overflow = "hidden";
     } else {
@@ -34,32 +34,32 @@ export default function Navbar() {
   const serviceOptions = [
     {
       name: "Infrastructure Repair",
-      icon: <Network size={16} />,
+      icon: <Network size={18} />,
       href: "/services/laptop-desktop-and-server-repair",
     },
     {
       name: "Threat Mitigation",
-      icon: <Shield size={16} />,
+      icon: <Shield size={18} />,
       href: "/services/virus-and-spyware-removal",
     },
     {
       name: "Enterprise Backup",
-      icon: <Database size={16} />,
+      icon: <Database size={18} />,
       href: "/services/data-recovery-and-backup",
     },
     {
       name: "Network Architecture",
-      icon: <Globe size={16} />,
+      icon: <Globe size={18} />,
       href: "/services/network-design",
     },
     {
       name: "Cloud Integration",
-      icon: <Cloud size={16} />,
+      icon: <Cloud size={18} />,
       href: "/services/cloud-services",
     },
     {
       name: "Cyber Security",
-      icon: <Zap size={16} />,
+      icon: <Zap size={18} />,
       href: "/services/cyber-security",
     },
   ];
@@ -82,11 +82,11 @@ export default function Navbar() {
         }`}
       >
         <div className="container mx-auto px-4 md:px-12 flex items-center justify-between">
-          {/* LOGO - Scales for mobile */}
+          {/* LOGO */}
           <Link href="/" className="relative flex items-center shrink-0">
             <div className="w-[100px] md:w-[130px]">
               <Image
-                src="/hbs-logo.png"
+                src="/hoilett-logo.png"
                 alt="HBS Logo"
                 width={130}
                 height={45}
@@ -96,32 +96,32 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* DESKTOP MENU - Hidden until XL */}
-          <div className="hidden xl:flex items-center gap-1">
+          {/* DESKTOP MENU */}
+          <div className="hidden xl:flex items-center gap-2">
             <NavLink href="/" label="Home" />
             <NavLink href="/about" label="About" />
 
             {/* SOLUTIONS DROPDOWN */}
             <div className="relative group/menu">
-              <button className="flex items-center gap-2 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-[#001f3f] hover:text-[#3a86ff] transition-all">
+              <button className="flex items-center gap-2 px-5 py-2.5 text-[13px] font-black uppercase tracking-widest text-[#001f3f] hover:text-[#3a86ff] transition-all">
                 Solutions
                 <ChevronDown
-                  size={12}
+                  size={14}
                   className="group-hover/menu:rotate-180 transition-transform duration-300"
                 />
               </button>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[500px] pt-4 opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible transition-all duration-300">
-                <div className="bg-white border border-blue-50 rounded-3xl p-6 shadow-2xl grid grid-cols-2 gap-2">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[550px] pt-4 opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible transition-all duration-300">
+                <div className="bg-white border border-blue-50 rounded-[32px] p-8 shadow-2xl grid grid-cols-2 gap-3">
                   {serviceOptions.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-xl transition-all group/item"
+                      className="flex items-center gap-4 p-4 hover:bg-blue-50 rounded-2xl transition-all group/item"
                     >
-                      <span className="p-2 bg-gray-50 rounded-lg text-[#3a86ff] group-hover/item:bg-[#3a86ff] group-hover/item:text-white transition-colors">
+                      <span className="p-2.5 bg-gray-50 rounded-xl text-[#3a86ff] group-hover/item:bg-[#3a86ff] group-hover/item:text-white transition-colors shadow-sm">
                         {item.icon}
                       </span>
-                      <span className="text-[10px] font-bold text-[#001f3f] uppercase">
+                      <span className="text-[11px] font-black text-[#001f3f] uppercase tracking-wider">
                         {item.name}
                       </span>
                     </Link>
@@ -137,22 +137,20 @@ export default function Navbar() {
 
           {/* RIGHT ACTION AREA */}
           <div className="flex items-center gap-4 md:gap-8">
-            {/* Phone - Hidden on small mobile */}
             <div className="hidden sm:flex flex-col items-end">
-              <span className="text-[8px] font-bold tracking-widest uppercase text-[#3a86ff]">
+              <span className="text-[9px] font-bold tracking-widest uppercase text-[#3a86ff]">
                 NOC Support
               </span>
               <a
                 href="tel:9737144625"
-                className="text-sm md:text-base font-black text-[#001f3f] whitespace-nowrap"
+                className="text-sm md:text-lg font-black text-[#001f3f] whitespace-nowrap"
               >
                 (973) 714-4625
               </a>
             </div>
 
-            {/* HAMBURGER TOGGLE - Visible below XL */}
             <button
-              className="xl:hidden flex flex-col items-center justify-center gap-1.5 w-10 h-10 bg-blue-50 rounded-lg text-[#001f3f]"
+              className="xl:hidden flex flex-col items-center justify-center gap-1.5 w-11 h-11 bg-blue-50 rounded-xl text-[#001f3f]"
               onClick={() => setMobileMenu(true)}
             >
               <div className="w-5 h-0.5 bg-current rounded-full" />
@@ -163,7 +161,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* MOBILE MENU OVERLAY - Fixed Background Issues */}
+      {/* MOBILE MENU OVERLAY */}
       <div
         className={`fixed inset-0 bg-white z-[1000] transition-transform duration-500 ease-in-out ${
           mobileMenu ? "translate-x-0" : "translate-x-full"
@@ -171,7 +169,7 @@ export default function Navbar() {
       >
         <div className="flex flex-col h-full p-6 md:p-12">
           <div className="flex justify-between items-center mb-10">
-            <Image src="/hbs-logo.png" alt="Logo" width={100} height={35} />
+            <Image src="/hbs-logo.png" alt="Logo" width={110} height={40} />
             <button
               onClick={() => setMobileMenu(false)}
               className="w-12 h-12 flex items-center justify-center bg-gray-50 rounded-2xl text-[#001f3f]"
@@ -185,21 +183,21 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-3xl md:text-4xl font-black text-[#001f3f] py-4 flex items-center justify-between border-b border-gray-50 hover:text-[#3a86ff] transition-all"
+                className="text-3xl md:text-4xl font-black text-[#001f3f] py-5 flex items-center justify-between border-b border-gray-50 hover:text-[#3a86ff] transition-all"
                 onClick={() => setMobileMenu(false)}
               >
                 {link.label}
-                <ArrowRight size={24} className="text-[#3a86ff]" />
+                <ArrowRight size={26} className="text-[#3a86ff]" />
               </Link>
             ))}
           </nav>
 
           <div className="mt-auto pt-8">
-            <div className="bg-blue-50 p-6 rounded-3xl">
-              <span className="text-[10px] font-bold text-[#3a86ff] uppercase tracking-widest">
+            <div className="bg-blue-50 p-8 rounded-[32px]">
+              <span className="text-[11px] font-bold text-[#3a86ff] uppercase tracking-widest">
                 Immediate Response Line
               </span>
-              <p className="text-2xl font-black text-[#001f3f] mt-1">
+              <p className="text-2xl font-black text-[#001f3f] mt-2">
                 (973) 714-4625
               </p>
             </div>
@@ -214,10 +212,10 @@ function NavLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="px-4 py-2 text-[10px] font-black uppercase tracking-widest text-[#001f3f] hover:text-[#3a86ff] transition-all relative group"
+      className="px-5 py-2.5 text-[13px] font-black uppercase tracking-widest text-[#001f3f] hover:text-[#3a86ff] transition-all relative group"
     >
       <span className="relative z-10">{label}</span>
-      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#3a86ff] transition-all duration-300 group-hover:w-1/2" />
+      <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#3a86ff] transition-all duration-300 group-hover:w-1/3" />
     </Link>
   );
 }

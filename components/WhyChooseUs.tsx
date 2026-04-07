@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
             <p className="text-[#001f3f]/60 text-xl lg:text-2xl font-medium leading-relaxed border-l-4 border-[#3a86ff] pl-8 py-2">
               We provide enterprise-grade hardware optimization and 24/7
               technical surveillance for businesses that require{" "}
-              <span className="text-[#001f3f] font-bold">zero downtime.</span>
+              <span className="text-[#001f3f] font-bold">maximum uptime.</span>
             </p>
           </div>
         </div>
