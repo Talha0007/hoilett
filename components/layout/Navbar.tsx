@@ -35,32 +35,32 @@ export default function Navbar() {
     {
       name: "Infrastructure Repair",
       icon: <Network size={18} />,
-      href: "/services/laptop-desktop-and-server-repair",
+      href: "/services/repair",
     },
     {
       name: "Threat Mitigation",
       icon: <Shield size={18} />,
-      href: "/services/virus-and-spyware-removal",
+      href: "/services/security",
     },
     {
       name: "Enterprise Backup",
       icon: <Database size={18} />,
-      href: "/services/data-recovery-and-backup",
+      href: "/services/backup",
     },
     {
       name: "Network Architecture",
       icon: <Globe size={18} />,
-      href: "/services/network-design",
+      href: "/services/network",
     },
     {
       name: "Cloud Integration",
       icon: <Cloud size={18} />,
-      href: "/services/cloud-services",
+      href: "/services/cloud",
     },
     {
       name: "Cyber Security",
       icon: <Zap size={18} />,
-      href: "/services/cyber-security",
+      href: "/services/cyber",
     },
   ];
 
@@ -77,51 +77,73 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 w-full z-[999] transition-all duration-500 ${
           isScrolled
-            ? "py-3 bg-white shadow-xl border-b border-blue-50"
+            ? "py-3 bg-white/90 backdrop-blur-md shadow-xl border-b border-blue-50"
             : "py-5 md:py-8 bg-transparent"
         }`}
       >
         <div className="container mx-auto px-4 md:px-12 flex items-center justify-between">
-          {/* LOGO */}
-          <Link href="/" className="relative flex items-center shrink-0">
-            <div className="w-[100px] md:w-[130px]">
+          {/* LOGO & BUSINESS NAME GROUP */}
+          <Link href="/" className="flex items-center gap-4 group shrink-0">
+            <div className="w-[55px] md:w-[65px] transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/hoilett-logo.png"
                 alt="HBS Logo"
-                width={130}
-                height={45}
+                width={65}
+                height={65}
                 priority
                 className="object-contain"
               />
+            </div>
+
+            {/* The Business Name - Slightly Dark Grey (Slate-700) */}
+            <div className="flex flex-col border-l border-slate-200 pl-4 py-1">
+              <span
+                className={`text-[12px] md:text-[14px] font-black uppercase tracking-[0.15em] leading-tight transition-colors duration-300 ${
+                  isScrolled ? "text-slate-700" : "text-slate-800"
+                }`}
+              >
+                Hoilett Business
+              </span>
+              <span
+                className={`text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] opacity-70 transition-colors duration-300 ${
+                  isScrolled ? "text-slate-500" : "text-slate-600"
+                }`}
+              >
+                Systems, Inc.
+              </span>
             </div>
           </Link>
 
           {/* DESKTOP MENU */}
           <div className="hidden xl:flex items-center gap-2">
-            <NavLink href="/" label="Home" />
-            <NavLink href="/about" label="About" />
+            <NavLink href="/" label="Home" isScrolled={isScrolled} />
+            <NavLink href="/about" label="About" isScrolled={isScrolled} />
 
             {/* SOLUTIONS DROPDOWN */}
             <div className="relative group/menu">
-              <button className="flex items-center gap-2 px-5 py-2.5 text-[13px] font-black uppercase tracking-widest text-[#001f3f] hover:text-[#3a86ff] transition-all">
+              <button
+                className={`flex items-center gap-2 px-5 py-2.5 text-[12px] font-black uppercase tracking-widest transition-all ${
+                  isScrolled ? "text-slate-700" : "text-[#001f3f]"
+                } hover:text-[#3a86ff]`}
+              >
                 Solutions
                 <ChevronDown
                   size={14}
                   className="group-hover/menu:rotate-180 transition-transform duration-300"
                 />
               </button>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[550px] pt-4 opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible transition-all duration-300">
-                <div className="bg-white border border-blue-50 rounded-[32px] p-8 shadow-2xl grid grid-cols-2 gap-3">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[550px] pt-4 opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible transition-all duration-300 translate-y-2 group-hover/menu:translate-y-0">
+                <div className="bg-white border border-blue-50 rounded-[32px] p-8 shadow-[0_30px_60px_rgba(0,0,0,0.12)] grid grid-cols-2 gap-3">
                   {serviceOptions.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
                       className="flex items-center gap-4 p-4 hover:bg-blue-50 rounded-2xl transition-all group/item"
                     >
-                      <span className="p-2.5 bg-gray-50 rounded-xl text-[#3a86ff] group-hover/item:bg-[#3a86ff] group-hover/item:text-white transition-colors shadow-sm">
+                      <span className="p-2.5 bg-gray-50 rounded-xl text-[#3a86ff] group-hover/item:bg-[#3a86ff] group-hover/item:text-white transition-colors">
                         {item.icon}
                       </span>
-                      <span className="text-[11px] font-black text-[#001f3f] uppercase tracking-wider">
+                      <span className="text-[10px] font-black text-[#001f3f] uppercase tracking-wider">
                         {item.name}
                       </span>
                     </Link>
@@ -130,9 +152,13 @@ export default function Navbar() {
               </div>
             </div>
 
-            <NavLink href="/remote-support" label="Remote Support" />
-            <NavLink href="/payment" label="Payment" />
-            <NavLink href="/contact" label="Contact" />
+            <NavLink
+              href="/remote-support"
+              label="Remote Support"
+              isScrolled={isScrolled}
+            />
+            <NavLink href="/payment" label="Payment" isScrolled={isScrolled} />
+            <NavLink href="/contact" label="Contact" isScrolled={isScrolled} />
           </div>
 
           {/* RIGHT ACTION AREA */}
@@ -143,14 +169,16 @@ export default function Navbar() {
               </span>
               <a
                 href="tel:9737144625"
-                className="text-sm md:text-lg font-black text-[#001f3f] whitespace-nowrap"
+                className={`text-sm md:text-lg font-black transition-colors ${
+                  isScrolled ? "text-slate-800" : "text-[#001f3f]"
+                } hover:text-[#3a86ff]`}
               >
                 (973) 714-4625
               </a>
             </div>
 
             <button
-              className="xl:hidden flex flex-col items-center justify-center gap-1.5 w-11 h-11 bg-blue-50 rounded-xl text-[#001f3f]"
+              className="xl:hidden flex flex-col items-center justify-center gap-1.5 w-11 h-11 bg-slate-900 rounded-xl text-white shadow-lg"
               onClick={() => setMobileMenu(true)}
             >
               <div className="w-5 h-0.5 bg-current rounded-full" />
@@ -161,7 +189,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* MOBILE MENU OVERLAY */}
+      {/* MOBILE MENU */}
       <div
         className={`fixed inset-0 bg-white z-[1000] transition-transform duration-500 ease-in-out ${
           mobileMenu ? "translate-x-0" : "translate-x-full"
@@ -169,21 +197,22 @@ export default function Navbar() {
       >
         <div className="flex flex-col h-full p-6 md:p-12">
           <div className="flex justify-between items-center mb-10">
-            <Image src="/hbs-logo.png" alt="Logo" width={110} height={40} />
+            <span className="font-black text-slate-800 uppercase tracking-tighter">
+              HBS, Inc.
+            </span>
             <button
               onClick={() => setMobileMenu(false)}
-              className="w-12 h-12 flex items-center justify-center bg-gray-50 rounded-2xl text-[#001f3f]"
+              className="w-12 h-12 flex items-center justify-center bg-gray-900 rounded-2xl"
             >
               <X size={28} />
             </button>
           </div>
-
           <nav className="flex flex-col space-y-2">
             {mobileLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-3xl md:text-4xl font-black text-[#001f3f] py-5 flex items-center justify-between border-b border-gray-50 hover:text-[#3a86ff] transition-all"
+                className="text-3xl font-black text-[#001f3f] py-5 flex items-center justify-between border-b border-gray-50"
                 onClick={() => setMobileMenu(false)}
               >
                 {link.label}
@@ -191,28 +220,27 @@ export default function Navbar() {
               </Link>
             ))}
           </nav>
-
-          <div className="mt-auto pt-8">
-            <div className="bg-blue-50 p-8 rounded-[32px]">
-              <span className="text-[11px] font-bold text-[#3a86ff] uppercase tracking-widest">
-                Immediate Response Line
-              </span>
-              <p className="text-2xl font-black text-[#001f3f] mt-2">
-                (973) 714-4625
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </>
   );
 }
 
-function NavLink({ href, label }: { href: string; label: string }) {
+function NavLink({
+  href,
+  label,
+  isScrolled,
+}: {
+  href: string;
+  label: string;
+  isScrolled: boolean;
+}) {
   return (
     <Link
       href={href}
-      className="px-5 py-2.5 text-[13px] font-black uppercase tracking-widest text-[#001f3f] hover:text-[#3a86ff] transition-all relative group"
+      className={`px-5 py-2.5 text-[12px] font-black uppercase tracking-widest transition-all relative group ${
+        isScrolled ? "text-slate-700" : "text-[#001f3f]"
+      } hover:text-[#3a86ff]`}
     >
       <span className="relative z-10">{label}</span>
       <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#3a86ff] transition-all duration-300 group-hover:w-1/3" />
