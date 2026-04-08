@@ -84,24 +84,24 @@ export default function AboutPage() {
                 providing service to the New York Tri-State area.
               </p>
               <p className="sm:block">
-                Our goal at Hoilett Business Systems is to provide you with the
-                greatest service experience ever. Our technicians have been in
-                the computer repair industry for many years. We have maintained
-                an excellent customer service record throughout the life of this
-                company. Not only do we have some of the best and most
-                knowledgeable techs in New York Tri-State area, but we also
-                require continued education to ensure that they all keep up with
-                the constant changes in technology.
+                At Hoilett Business Systems, our mission is to deliver an
+                exceptional service experience every time. Our technicians bring
+                years of hands-on experience in the computer repair industry,
+                and we’ve built a strong reputation for outstanding customer
+                service throughout the life of our company. We pride ourselves
+                on having some of the most skilled and knowledgeable
+                professionals in the New York Tri-State area, and we prioritize
+                ongoing training to ensure our team stays current with the
+                ever-evolving world of technology.
               </p>
               <p className="sm:block">
-                We provide solutions for every computer repair related issue
-                that you could ever have. We do it all. Everything from simple
-                computer setup to complex network configurations. There is no
-                job too big or too small of us. We offer the full range of IT
-                services. Cyber security, Virus removal, Hardware replacement,
-                Upgrades, Software installs, network setup, consulting, general
-                maintenance, data recovery and anything else related to
-                computers.
+                We offer comprehensive solutions for virtually any
+                computer-related issue—no matter the size or complexity. From
+                basic computer setups to advanced network configurations, we
+                handle it all. Our full range of IT services includes
+                cybersecurity, virus removal, hardware replacement, system
+                upgrades, software installation, network setup, consulting,
+                general maintenance, data recovery, and more.
               </p>
             </div>
 
@@ -142,30 +142,30 @@ export default function AboutPage() {
               </span>
             </h2>
             <p className="text-[#001f3f]/60 text-base md:text-lg font-medium leading-relaxed">
-              We are a team of committed mobile computer repair technicians
-              dedicated to providing quality affordable service to the New York
-              Tri-State area. All techs at Hoilett Business Systems are
-              professionally trained.
+              We are a dedicated team of mobile computer repair technicians
+              committed to delivering reliable, high-quality, and affordable IT
+              services throughout the New York Tri-State area. Every technician
+              at Hoilett Business Systems is professionally trained, ensuring
+              consistent expertise and dependable support with every service
+              call.
             </p>
             <p className="text-[#001f3f]/60 text-base md:text-lg font-medium leading-relaxed">
-              One issue that is often not recognized by our clients are viruses.
-              There are some viruses that cause your computer to do weird things
-              that anyone can diagnose as a virus. However, viruses and other
-              forms of malware have become so complex that many times they go
-              undetected by your virus protection. We specialize in detecting
-              and removing even the most stubborn viruses and malware. We use a
-              technique that consists of manually removing viruses versus using
-              software to do it. Manually removing takes a little more time and
-              is more detailed but we ensure that your virus doesn’t stand a
-              chance of recreating itself as some do.
+              Commonly overlooked issues we often encounter are viruses and
+              malware. While some infections cause obvious disruptions, many
+              modern threats are highly sophisticated and can bypass standard
+              antivirus software without detection. We specialize in identifying
+              and eliminating even the most persistent threats. Our approach
+              focuses on meticulous, manual virus and malware removal rather
+              than relying solely on automated tools. While this method requires
+              more time and precision, it allows us to fully eradicate threats
+              and prevent them from reoccurring.
             </p>
             <p className="text-[#001f3f]/60 text-base md:text-lg font-medium leading-relaxed">
-              Hardware replacement is a pretty common occurrence in the computer
-              repair industry. Over time computer parts wear out just like
-              anything else that has moving parts and electrical circuitry. Hard
-              drives either short circuit or their motors burn out. Sometimes
-              this can be fixed and sometimes the situation calls for a
-              replacement. Either way our techs are prepared to handle the
+              Hardware replacement is another core service we provide. Like any
+              equipment with moving parts and electrical components and computer
+              hardware. Hard drives either short circuit or their motors burn
+              out. Sometimes this can be fixed and sometimes the situation calls
+              for a replacement. Either way our techs are prepared to handle the
               issue. We do software and hardware upgrades.
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
@@ -196,26 +196,24 @@ export default function AboutPage() {
                 <span className="text-[#3a86ff]">Popular Brands.</span>
               </h2>
               <p className="text-[#001f3f]/50 text-sm font-medium leading-relaxed">
-                We often see businesses and residential customers that don’t
+                We often see businesses and residential customers that do not
                 understand the importance of keeping their computer up to date.
-                Microsoft recently stopped supporting Windows XP and it caused
-                lots of headaches for many of people that were still on that
-                operating system. It affected everything from point of sale
-                software to video surveillance systems. Lucky all that it took
-                was a software upgrade to get them back on track. Sometimes it
-                takes hardware upgrades to meet the minimum system requirements
-                of certain programs. Those are just two of the 100′s of reasons
-                and components that you may now or in the future need to
-                upgrade.
+                Microsoft recently stopped supporting Windows XP causing many
+                users to experience major disruptions—from point-of-sale systems
+                to video surveillance setups. In many cases, a simple software
+                upgrade resolved the issue, though some situations required
+                hardware upgrades to meet modern system requirements. These are
+                just a few of the many reasons why staying current with
+                technology is essential.
               </p>
               <p className="text-[#001f3f]/50 text-sm font-medium leading-relaxed">
-                Hoilett Business Systems is not just a computer repair company
-                but we also supply the parts and software for your computers and
-                networks. Network issues can bring a business operation to a
-                halt and hinder the lives of everyday people. We know how
-                important it can be for everyone to access the internet and even
-                share files so our network team works fast and efficiently to
-                restore any network outages that might arise.
+                Hoilett Business Systems goes beyond repair services—we also
+                provide the necessary hardware and software to support your
+                computers and networks. Network issues can bring business
+                operations to a standstill and disrupt daily life. That’s why
+                our network specialists respond quickly and efficiently to
+                diagnose and resolve outages, ensuring you stay connected,
+                productive, and secure.
               </p>
               <div className="flex items-center gap-3 opacity-60">
                 <Award className="text-[#3a86ff]" size={24} />
