@@ -35,32 +35,32 @@ export default function Navbar() {
     {
       name: "Infrastructure Repair",
       icon: <Network size={18} />,
-      href: "/services/repair",
+      href: "/services/laptop-desktop-and-server-repair",
     },
     {
       name: "Threat Mitigation",
       icon: <Shield size={18} />,
-      href: "/services/security",
+      href: "/services/virus-and-spyware-removal",
     },
     {
       name: "Enterprise Backup",
       icon: <Database size={18} />,
-      href: "/services/backup",
+      href: "/services/data-recovery-and-backup",
     },
     {
       name: "Network Architecture",
       icon: <Globe size={18} />,
-      href: "/services/network",
+      href: "/services/network-design",
     },
     {
       name: "Cloud Integration",
       icon: <Cloud size={18} />,
-      href: "/services/cloud",
+      href: "/services/cloud-services",
     },
     {
       name: "Cyber Security",
       icon: <Zap size={18} />,
-      href: "/services/cyber",
+      href: "/services/cyber-security",
     },
   ];
 
