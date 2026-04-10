@@ -53,7 +53,7 @@ export default function AboutSection() {
                   Established 1997
                 </span>
               </div>
-              <h2 className="text-4xl lg:text-6xl font-black tracking-tighter leading-[1.1] text-[#001f3f]">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl text-center font-black tracking-tighter leading-[1.1] text-[#001f3f]">
                 PROUDLY SERVING THE <br />
                 <span className="text-[#3a86ff] italic">NY TRI-STATE AREA</span>
               </h2>

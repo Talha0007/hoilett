@@ -2,15 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Mail, ChevronRight, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Mail, ChevronRight } from "lucide-react";
 
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -22,15 +16,6 @@ export default function Footer() {
     { name: "Payment", href: "/payment" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
-  ];
-
-  const services = [
-    "Enterprise Network Design",
-    "Threat Mitigation & Virus Removal",
-    "Data Recovery & Backup",
-    "Infrastructure Architecture",
-    "Managed Cloud Services",
-    "Cyber Security Solutions",
   ];
 
   return (
@@ -58,17 +43,11 @@ export default function Footer() {
             </Link>
             <p className="text-[#000000]/50 text-sm leading-relaxed font-medium">
               Providing enterprise-grade IT infrastructure and network security
-              solutions since 1996. Dedicated to keeping your business connected
+              solutions since 1997. Dedicated to keeping your business connected
               and secure.
             </p>
             <div className="flex items-center gap-4">
-              {[
-                FaFacebookF,
-                FaTwitter,
-                FaLinkedinIn,
-                FaInstagram,
-                FaYoutube,
-              ].map((Icon, i) => (
+              {[FaFacebookF, FaLinkedinIn, FaInstagram].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
