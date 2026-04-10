@@ -20,7 +20,8 @@ export const SERVICES_DATA = [
       "We know how critical your computer is and how important it is to find a reliable computer repair specialist for either Mac or PC products. That is why Hoilett Business Systems, Inc. is fully committed to helping you receive the very best service as quickly as possible! Give us a call today so that we can help you set up your network, or troubleshoot any issues you may be experiencing. We offer reasonable pricing plans, either for one-time services or a monthly subscription.",
     ],
     icon: Wrench,
-    image: "/services/laptop-desktop-and-server-repair.jpg",
+    image:
+      "https://res.cloudinary.com/drhmemypy/image/upload/v1775858007/laptop-desktop-and-server-repair_rq84hj.jpg",
     accentColor: "#3a86ff", // Electric Blue
     bgGradient: "from-blue-500/10",
     slug: "laptop-desktop-and-server-repair",
@@ -35,7 +36,8 @@ export const SERVICES_DATA = [
       "Our virus removal service ensures that the virus in completely removed. We utilize a combination of software and manual techniques to completely remove the virus from your system.",
     ],
     icon: BugPlay,
-    image: "/services/virus-and-spyware-removal.jpg",
+    image:
+      "https://res.cloudinary.com/drhmemypy/image/upload/v1775858047/virus-and-spyware-removal_vm3wno.jpg",
     accentColor: "#10b981", // Emerald Green
     bgGradient: "from-emerald-500/10",
     slug: "virus-and-spyware-removal",
@@ -49,7 +51,8 @@ export const SERVICES_DATA = [
       "Do you have sufficient resources and platforms for computer data recovery? Have you created back-up to avoid any potential data loss? For a single computer, it may be an easy task. For organizations, educational institutes and similar other offices, you need an expert hand for computer data recovery and back-up.",
       "No matter your business size, cloud storage and cloud backup are options that can keep your data safe and secure. Business continuity and disaster recovery belong to all businesses; we can help get you running—and keep you going.",
     ],
-    image: "/services/data-recovery-and-backup.jpg",
+    image:
+      "https://res.cloudinary.com/drhmemypy/image/upload/v1775857972/data-recovery-and-backup_mx3tkk.jpg",
     icon: DatabaseBackup,
     accentColor: "#60a5fa", // Sky Blue
     bgGradient: "from-sky-500/10",
@@ -63,7 +66,8 @@ export const SERVICES_DATA = [
     longDescription: [
       "Keeping your business running smoothly requires building and maintaining a robust, highly available network. Hoilett Business Systems, Inc. offers proven network design and implementation services that drive results for your business.",
     ],
-    image: "/services/network-design.jpg",
+    image:
+      "https://res.cloudinary.com/drhmemypy/image/upload/v1775858024/network-design_xkfarp.jpg",
     icon: Unplug,
     accentColor: "#3b82f6", // Royal Blue
     bgGradient: "from-blue-600/10",
@@ -77,7 +81,8 @@ export const SERVICES_DATA = [
     longDescription: [
       "How ready is your practice to join the cloud revolution? Is AWS, Google Cloud, or Office 365 right for you? We’ll look at your usage patterns to determine the kinds (and volume) of resources that are best for you, map out a recommendation, and then migrate your infrastructure, applications, and business processes, with a keen eye on risk—and potential opportunities.",
     ],
-    image: "/services/cloud-services.jpg",
+    image:
+      "https://res.cloudinary.com/drhmemypy/image/upload/v1775857886/cloud-services_lv1ou6.jpg",
     icon: CloudSun,
     accentColor: "#0ea5e9", // Ocean Blue
     bgGradient: "from-cyan-500/10",
@@ -93,7 +98,8 @@ export const SERVICES_DATA = [
       "Hoilett Business Systems, Inc. cybersecurity professionals provide business owners with a full-spectrum service offering from incident response and audit advisory services, to breach response, and post-incident remediation. Hoilett Business Systems, Inc. works with organizations to ensure needs are not only met but aligned with industry and regulatory requirements.",
       "Hoilett Business Systems, Inc. full stack services include advisory focused services such as security risk assessments, security awareness training, and pen testing. Our tiered Managed Security Packages include tiers of protection that meet demands and enable visibility and budget planning.",
     ],
-    image: "/services/cyber-security.jpg",
+    image:
+      "https://res.cloudinary.com/drhmemypy/image/upload/v1775857940/cyber-security_gby0b7.jpg",
     icon: ShieldCheck,
     accentColor: "#ef4444", // Tech Red
     bgGradient: "from-red-500/10",
