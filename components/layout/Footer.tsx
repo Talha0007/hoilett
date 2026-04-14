@@ -47,13 +47,28 @@ export default function Footer() {
               and secure.
             </p>
             <div className="flex items-center gap-4">
-              {[FaFacebookF, FaLinkedinIn, FaInstagram].map((Icon, i) => (
+              {[
+                {
+                  Icon: FaFacebookF,
+                  href: "https://www.facebook.com/hoilettbusiness/",
+                },
+                {
+                  Icon: FaLinkedinIn,
+                  href: "https://www.linkedin.com/in/junior-hoilett-1032875/",
+                },
+                {
+                  Icon: FaInstagram,
+                  href: "https://instagram.com/hoilettbusinesssystems",
+                },
+              ].map((social, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={social.href}
+                  target="_blank" // Opens in a new tab
+                  rel="noopener noreferrer" // Security best practice
                   className="w-10 h-10 flex items-center justify-center rounded-xl bg-blue-50 text-[#3a86ff] hover:bg-[#3a86ff] hover:text-white transition-all duration-300 shadow-sm"
                 >
-                  <Icon size={16} />
+                  <social.Icon size={16} />
                 </a>
               ))}
             </div>
