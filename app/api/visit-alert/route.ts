@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { Redis } from "@upstash/redis";
 
-// Initialize Redis connection
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL!,
   token: process.env.UPSTASH_REDIS_REST_TOKEN!,
@@ -9,15 +8,16 @@ const redis = new Redis({
 
 export async function POST(req: Request) {
   try {
-    // Get IP to identify the user uniquely
-    const ip = req.headers.get("x-forwarded-for") || "local-dev";
+    // Better IP detection: Get the first IP in the forwarded list
+    const forwarded = req.headers.get("x-forwarded-for");
+    const ip = forwarded ? forwarded.split(",")[0].trim() : "local-dev";
     const redisKey = `alert_sent:${ip}`;
 
-    // 1. Check Redis: Has this IP visited in the last 24 hours?
+    // 1. Check Redis: Has this IP visited in the last 2 hours?
     const isRecentlyAlerted = await redis.get(redisKey);
 
     if (isRecentlyAlerted) {
-      return NextResponse.json({ message: "Repeat visitor - No alert sent" });
+      return NextResponse.json({ message: "Cooldown active - No alert sent" });
     }
 
     // 2. Send Push Notification via Pushover
@@ -29,23 +29,26 @@ export async function POST(req: Request) {
         body: JSON.stringify({
           token: process.env.PUSHOVER_API_TOKEN,
           user: process.env.PUSHOVER_USER_KEY,
-          title: "HBS Visitor Alert",
-          message: `A new client is viewing the website (IP: ${ip})`,
-          sound: "cashregister", // Custom sound for your phone
+          title: "🚀 HBS Visitor Alert",
+          message: `Client active on site. IP: ${ip}`,
+          sound: "cashregister",
           priority: 1,
         }),
       },
     );
 
-    if (pushoverResponse.ok) {
-      // 3. Mark this IP in Redis for 24 hours (86400 seconds)
-      await redis.set(redisKey, "true", { ex: 86400 });
-      return NextResponse.json({ success: true, status: "Alert Sent" });
-    }
+    const pushoverData = await pushoverResponse.json();
 
-    return NextResponse.json({ error: "Pushover API failed" }, { status: 500 });
+    if (pushoverResponse.ok) {
+      // 3. Mark in Redis for 2 hours (7200 seconds)
+      await redis.set(redisKey, "true", { ex: 30 });
+      return NextResponse.json({ success: true, status: "Alert Sent" });
+    } else {
+      console.error("Pushover Error:", pushoverData);
+      return NextResponse.json({ error: "Pushover failed" }, { status: 500 });
+    }
   } catch (error) {
-    console.error("Internal Alert Error:", error);
+    console.error("Internal Server Error:", error);
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   }
 }
