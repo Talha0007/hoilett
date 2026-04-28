@@ -105,7 +105,7 @@ export default function PaymentUI({ clientId }: { clientId: string }) {
                 placeholder="Your Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl font-bold outline-none focus:ring-2 ring-blue-500/20"
+                className="w-full pl-12 pr-4 py-4 bg-slate-50 text-black rounded-2xl font-bold outline-none focus:ring-2 ring-blue-500/20"
               />
             </div>
           </div>
