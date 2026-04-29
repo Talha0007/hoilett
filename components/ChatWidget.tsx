@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { sendChatMessage } from "@/app/actions/chat";
 
 export default function ChatWidget() {
-  const [isAppearing, setIsAppearing] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<
     { role: "user" | "ai"; text: string }[]
@@ -13,22 +12,6 @@ export default function ChatWidget() {
   const [sessionId, setSessionId] = useState("");
 
   const scrollBottomRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsAppearing(!entry.isIntersecting);
-      },
-      { threshold: 0.1 },
-    );
-
-    const hero = document.getElementById("hero-trigger");
-    if (hero) observer.observe(hero);
-
-    return () => {
-      if (hero) observer.unobserve(hero);
-    };
-  }, []);
 
   useEffect(() => {
     let id = localStorage.getItem("hbs_session_id");
@@ -66,25 +49,27 @@ export default function ChatWidget() {
     setLoading(false);
   };
 
-  if (!isAppearing) return null;
+  // 3. Remove the "if (!isAppearing) return null;" check
 
   return (
-    // Container: Adjust spacing from edges based on screen size
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end group max-w-[calc(100vw-2rem)]">
+      {/* 1. Tooltip / Call-to-Action (Visible when closed) */}
+      {!isOpen && (
+        <div className="mb-3 animate-bounce shadow-xl bg-white text-blue-600 px-4 py-2 rounded-2xl rounded-br-none text-xs font-bold border border-blue-100 flex items-center gap-2">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+          </span>
+          AI Assistant is here!
+        </div>
+      )}
+
       {/* Chat Window */}
       {isOpen && (
         <div
           className="mb-4 flex flex-col bg-slate-900/90 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-5 duration-300
-          /* Responsive Widths */
-          w-[calc(100vw-2rem)] 
-          xs:w-[320px] 
-          sm:w-[380px] 
-          md:w-[400px] 
-          lg:w-[420px]
-          /* Responsive Heights */
-          h-[50vh]
-          sm:h-[500px] 
-          max-h-[700px]"
+          w-[calc(100vw-2rem)] xs:w-[320px] sm:w-[380px] md:w-[400px] lg:w-[420px]
+          h-[50vh] sm:h-[500px] max-h-[700px]"
         >
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-3 sm:p-4 text-white flex justify-between items-center shrink-0">
@@ -188,20 +173,20 @@ export default function ChatWidget() {
         </div>
       )}
 
-      {/* Toggle Button: Slightly larger for touch on mobile */}
+      {/* 2. Optimized Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-blue-600 hover:bg-blue-500 text-white p-3.5 sm:p-4 rounded-full shadow-2xl transition-all hover:scale-110 active:scale-95 border border-white/20 touch-manipulation flex items-center justify-center"
+        className="bg-blue-600 hover:bg-blue-500 text-white p-3 sm:p-3.5 rounded-full shadow-2xl transition-all hover:scale-110 active:scale-95 border border-white/20 touch-manipulation flex items-center justify-center"
       >
         {isOpen ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="22" // Slightly smaller icon for better balance
+            height="22"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="2.5" // Thicker stroke looks better on small icons
             strokeLinecap="round"
             strokeLinejoin="round"
           >
@@ -211,8 +196,8 @@ export default function ChatWidget() {
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="32" // Slightly larger chat icon
+            height="32"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

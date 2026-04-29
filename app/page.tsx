@@ -3,7 +3,6 @@ import HeroSection from "../components/hero/HeroSection";
 import InfoSection from "@/components/InfoSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import OurServices from "@/components/ServicesSection";
-import ChatWidget from "@/components/ChatWidget";
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
       <OurServices />
       <WhyChooseUs />
       <InfoSection />
-      <ChatWidget />
     </main>
   );
 }

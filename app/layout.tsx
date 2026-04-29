@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import ChatWidget from "@/components/ChatWidget";
 import VisitorTracker from "@/components/VisitorTracker";
 
 const geistSans = Geist({
@@ -35,6 +36,7 @@ export default function RootLayout({
         <VisitorTracker />
         <Navbar />
         {children}
+        <ChatWidget />
         <Footer />
         <ScrollToTop />
       </body>
