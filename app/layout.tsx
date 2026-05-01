@@ -33,7 +33,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <body className="bg-black">
-        <VisitorTracker />
+        {/* <VisitorTracker /> */}
         <Navbar />
         {children}
         <ChatWidget />
