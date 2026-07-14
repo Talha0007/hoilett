@@ -19,12 +19,12 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-white text-[#001f3f] pt-24 pb-12 border-t border-blue-50 relative overflow-hidden">
+    <footer className="bg-white text-[#001f3f] pt-12 pb-6 border-t border-blue-50 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-[100px] pointer-events-none -mr-40 -mt-40" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-50/30 rounded-full blur-[80px] pointer-events-none -ml-20 -mb-20" />
 
       <div className="container mx-auto px-6 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-12">
           <div className="space-y-8">
             <Link
               href="/"
@@ -176,7 +176,7 @@ export default function Footer() {
         </div>
 
         {/* Updated Bottom Credit Bar */}
-        <div className="pt-10 border-t border-blue-50 text-center">
+        <div className="pt-6 border-t border-blue-100 text-center">
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[11px] font-bold tracking-wider uppercase text-[#001f3f]/50">
             <span>
               © {currentYear} Hoilett Business Systems. All Rights Reserved.
