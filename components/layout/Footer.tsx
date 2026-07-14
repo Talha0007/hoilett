@@ -20,13 +20,11 @@ export default function Footer() {
 
   return (
     <footer className="bg-white text-[#001f3f] pt-24 pb-12 border-t border-blue-50 relative overflow-hidden">
-      {/* Decorative Light Background Elements */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-[100px] pointer-events-none -mr-40 -mt-40" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-50/30 rounded-full blur-[80px] pointer-events-none -ml-20 -mb-20" />
 
       <div className="container mx-auto px-6 lg:px-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
-          {/* Brand Column */}
           <div className="space-y-8">
             <Link
               href="/"
@@ -74,7 +72,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* New Jersey Column */}
           <div className="space-y-6">
             <h3 className="text-[#3a86ff] font-black tracking-[0.2em] text-[10px] uppercase">
               New Jersey Office
@@ -115,7 +112,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* New York Column */}
           <div className="space-y-6">
             <h3 className="text-[#3a86ff] font-black tracking-[0.2em] text-[10px] uppercase">
               New York Office
@@ -156,7 +152,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Quick Links Column */}
           <div className="space-y-6">
             <h3 className="text-[#001f3f] font-black tracking-[0.2em] text-[10px] uppercase border-l-4 border-[#3a86ff] pl-4">
               Company
@@ -180,24 +175,36 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-10 border-t border-blue-50 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[#001f3f]/40 text-[11px] font-bold tracking-wider uppercase">
-            © {currentYear} Hoilett Business Systems. All Rights Reserved.
-          </p>
-          <div className="flex items-center gap-8 text-[11px] font-black tracking-[0.1em] uppercase text-[#001f3f]/60">
+        {/* Updated Bottom Credit Bar */}
+        <div className="pt-10 border-t border-blue-50 text-center">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[11px] font-bold tracking-wider uppercase text-[#001f3f]/50">
+            <span>
+              © {currentYear} Hoilett Business Systems. All Rights Reserved.
+            </span>
+            <span className="text-blue-100">|</span>
             <Link
               href="/privacy"
               className="hover:text-[#3a86ff] transition-colors"
             >
               Privacy Policy
             </Link>
+            <span className="text-blue-100">|</span>
             <Link
               href="/terms"
               className="hover:text-[#3a86ff] transition-colors"
             >
               Terms of Service
             </Link>
+            <span className="text-blue-100">|</span>
+            <a
+              href="https://www.openstacked.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#3a86ff] transition-colors normal-case font-semibold text-[11px]"
+            >
+              Designed by{" "}
+              <span className="text-[#3a86ff] font-bold">Open Stacked</span>
+            </a>
           </div>
         </div>
       </div>

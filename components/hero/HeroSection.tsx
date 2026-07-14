@@ -1,9 +1,8 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import {
-  Activity,
   CheckCircle2,
   ArrowRight,
   ShieldCheck,
@@ -13,17 +12,22 @@ import {
 import Link from "next/link";
 import LoadingScreen from "./LoadingScreen";
 
+// Defer the heavy 3D Scene to run purely on client idle time
 const Scene = dynamic(() => import("./Scene").then((mod) => mod.default), {
   ssr: false,
+  loading: () => <div className="absolute inset-0 bg-transparent" />,
 });
 
 export default function HeroSection() {
-  const [isClient, setIsClient] = useState(false);
-  useLayoutEffect(() => {
-    setIsClient(true);
-  }, []);
+  const [mount3D, setMount3D] = useState(false);
 
-  if (!isClient) return <div className="min-h-screen bg-white" />;
+  // Trigger 3D mounting slightly after initial mount to let critical text/images paint first
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMount3D(true);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   const services = [
     "Enterprise Network Design",
@@ -38,25 +42,18 @@ export default function HeroSection() {
     <section className="relative min-h-[100dvh] w-full flex flex-col bg-white overflow-hidden font-sans">
       <LoadingScreen />
 
-      {/* Background Layer */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_70%_30%,_#f8fbff_0%,_#ffffff_70%)]" />
 
-      {/* 3D Scene Layer - Absolute so it doesn't push text */}
-      <div className="absolute inset-0 z-10 pointer-events-none lg:pointer-events-auto opacity-40 lg:opacity-100">
-        <Scene />
-      </div>
+      {/* Defer loading/rendering of WebGL until after text is already visible */}
+      {mount3D && (
+        <div className="absolute inset-0 z-10 pointer-events-none lg:pointer-events-auto opacity-40 lg:opacity-100">
+          <Scene />
+        </div>
+      )}
 
-      {/* Content Area */}
       <div className="relative z-20 container mx-auto px-6 lg:px-16 flex-1 flex flex-col justify-center">
         <div className="max-w-[90rem] mx-auto w-full grid lg:grid-cols-2 items-center gap-6 lg:gap-12">
           <div className="flex flex-col space-y-4 lg:space-y-6 text-center lg:text-left items-center lg:items-start pt-16 lg:pt-0">
-            {/* <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-[#3a86ff]/5 border border-[#3a86ff]/10">
-              <Activity size={12} className="text-[#3a86ff] animate-pulse" />
-              <span className="text-[#001f3f] font-mono text-[9px] font-bold tracking-widest uppercase">
-                Established 1997 • Next-Gen Networking
-              </span>
-            </div> */}
-
             <div className="space-y-2">
               <h1 className="text-[12vw] leading-[0.85] sm:text-6xl lg:text-7xl xl:text-8xl font-black text-black tracking-tighter">
                 Network <br />{" "}
@@ -106,11 +103,9 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Desktop Spacer */}
           <div className="hidden lg:block h-[400px] w-full pointer-events-none" />
         </div>
 
-        {/* Bottom Trust Bar - Managed to stay visible but subtle */}
         <div className="flex flex-wrap lg:grid lg:grid-cols-3 gap-4 lg:gap-8 mt-8 py-6 border-t border-gray-100 w-full max-w-4xl opacity-80">
           <Stat icon={<ShieldCheck size={16} />} text="Ironclad Security" />
           <Stat icon={<Globe2 size={16} />} text="Global Support" />
